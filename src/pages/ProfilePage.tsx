@@ -203,12 +203,12 @@ function ProfilePage({ navigation }: { navigation: any }) {
                       await axios.post(`/like/${item['_id']}/${username}`).then((response) => {
                         setLike(like + (isLike ? -1 : 1));
                         obtenerLike();
-                        
+
                       })
                       await axios.get(`/countLike/${item['_id']}`).then((response) => {
                         setCount1(response.data);
                       });
-                        ;
+                      ;
                     } else if (like + (isLike ? -1 : 1)) {
                       await axios.delete(`/notlike/${username}/${item['_id']}`).then((response) => {
                         setLike(like + (!isLike ? -1 : 1));
@@ -236,10 +236,19 @@ function ProfilePage({ navigation }: { navigation: any }) {
                       onPress={() =>
                         navigation.navigate("OwnTweetsWithImage", {
                           owner: item["owner"],
-                          tweets: item["tweets"],
+                          post: item["post"],
                           time: item["time"],
                           _id: item["_id"],
                           url: item["url"],
+                          url2: item["url2"],
+                          url3: item["url3"],
+                          url4: item["url4"],
+                          url5: item["url5"],
+                          url6: item["url6"],
+                          url7: item["url7"],
+                          url8: item["url8"],
+                          url9: item["url9"],
+                          url10: item["url10"],
                         })
                       }
                       style={{
@@ -267,21 +276,7 @@ function ProfilePage({ navigation }: { navigation: any }) {
                           overflow: "hidden",
                         }}
                       >
-                        <Text
-                          style={{
-                            paddingTop: 20,
-                            paddingLeft: 90,
-                            paddingRight: 60,
-                            textAlign: "left",
-                            fontSize: 14,
-                          }}
-
-                        >
-                          {" "}
-                          {item["_id"]}
-                          {"\n"}
-
-                        </Text>
+                      
                         <Text
                           style={{
                             paddingTop: 20,
@@ -360,7 +355,7 @@ function ProfilePage({ navigation }: { navigation: any }) {
                               <Pressable
                                 style={{ paddingLeft: 55, paddingTop: 30, paddingBottom: 0 }}
                                 onPress={async () => {
-                                    onClick();
+                                  onClick();
 
                                 }}>
 
