@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { useAuthStore } from "../store/auth.store";
 import axios from "../libs/axios";
-
+import { LinearGradient } from "expo-linear-gradient";
 function HomePage({ navigation }: { navigation: any }) {
   const username = useAuthStore((state) => state.profile.username.username);
   let [task, setTask] = useState([]);
@@ -27,7 +27,7 @@ setTask(response.data )
   const followingRealease = async () => {
     await axios.get(`follow/${username}`).then((response) => {
       setTask1(response.data);
-      console.log(response.data);
+     
     });
   };
 
@@ -66,25 +66,34 @@ setTask(response.data )
                     paddingRight: 10,
                   }}
                   onPress={() =>
-                    navigation.navigate("awayprofile", {
-                      username: item["following"],
+                    navigation.navigate("AwayReadstories", {
+                      url: item["url"],
+                      owner: item["following"],
+                      time: item["time"],
                     })
                   }
                 >
-                  <Text
-                    style={{
+                       <LinearGradient
+          colors={['#00FFFF', '#17C8FF', '#329BFF', '#4C64FF', '#6536FF', '#8000FF']}
+          start={{x: 0.0, y: 1.0}} end={{x: 1.0, y: 1.0}}>
+              <Text
+               style={{
                       textAlign: "left",
                       fontSize: 16,
                       fontWeight: "500",
-                      color: "#333",
+                   
                       paddingTop: 25,
                       paddingBottom: 5,
                       paddingHorizontal: 15,
-                      borderColor: "black",
-                      borderWidth: 3,
-                      borderRadius: 15,
-                      backgroundColor: "#fff",
-                      overflow: "hidden",
+                       borderWidth: 3,
+                       margin: 1,
+                      width: 200,
+                      borderRadius: 10,
+                      paddingVertical: 10,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      backgroundColor: 'white',
+                   
                     }}
                   >
                     <Text
@@ -98,12 +107,10 @@ setTask(response.data )
                       }}
                     >
                       @{item["following"]}
-                      {"  "}
-                     
-                      {"\n"}
-                      {"\n"}
-                    </Text>
+                     </Text>
+                   
                   </Text>
+                  </LinearGradient>
                 </TouchableOpacity>
               );
             }}
@@ -147,7 +154,7 @@ setTask(response.data )
                           }}
                           onPress={() =>{
                             OnRefresh();
-                            navigation.navigate("Profile", {
+                            navigation.navigate("stories", {
                             
                             })
                           }}
@@ -180,6 +187,12 @@ setTask(response.data )
                             fontWeight: "700",
                             fontSize: 16,
                             color: "#000000",
+                          }}
+                            onPress={() =>{
+                            OnRefresh();
+                            navigation.navigate("DM", {
+                            
+                            })
                           }}
                         >
                            DM
@@ -372,6 +385,7 @@ setTask(response.data )
       </ScrollView>
     </SafeAreaView>
   );
+  
 
 }
 export default HomePage;

@@ -28,12 +28,12 @@ function AwayProfile({ navigation, route }: { navigation: any; route: any }) {
   const [countFollowing, setCountFollowing] = useState([]);
   const [countFollowers, setCountFollowers] = useState([]);
   const tweetsRelease = async () => {
-    await axios.get(`tweet/${username}`).then((response) => {
+    await axios.get(`post/${username}`).then((response) => {
       setTask(response.data);
     });
   };
   const tweetsCount = async () => {
-    await axios.get(`countTweets/${username}`).then((response) => {
+    await axios.get(`countPost/${username}`).then((response) => {
       setCount(response.data);
     });
   };

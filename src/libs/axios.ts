@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useAuthStore } from "../store/auth.store";
 
-const baseURL ="http://192.168.0.204:3000";
+const baseURL ="https://back-instagram-reactnative-production.up.railway.app/";
 
 const authApi = axios.create({
   baseURL, 

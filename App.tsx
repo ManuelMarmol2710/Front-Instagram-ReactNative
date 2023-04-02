@@ -10,10 +10,10 @@ import AwayProfile from "./src/pages/AwayProfile";
 import SiguiendoPage from "./src/pages/Siguiendo";
 import SettingsPage from "./src/pagesListas/SettingsPage";
 import TweetsPage from "./src/pages/TweetsPage";
-import TweetsWithImage from "./src/pages/TweetsWithImage";
+import TweetsWithImage from "./src/pages/PostWithImage";
 import OwnTweetsPage from "./src/pages/OwnTweetsPage";
-import OwnTweetsWithImage from "./src/pages/OwnTweetsWithImage";
-import NewTweetPage from "./src/pages/NewTweet";
+import OwnPostWithImage from "./src/pages/OwnPostWithImage";
+import NewPostPage from "./src/pages/NewPost";
 import OwnComments from "./src/pages/OwnComments";
 import AwayComments from "./src/pages/AwayComments";
 import ShowLikePage from "./src/pages/ShowLikes";
@@ -25,6 +25,11 @@ import followingPage from "./src/pages/Following";
 import AwayfollowingPage from "./src/pages/AwayFollowing";
 import followersPage from "./src/pages/Followers";
 import AwayfollowersPage from "./src/pages/AwayFollowers";
+import DMPage from "./src/pages/DM";
+import StoriesPage from "./src/pages/Stories";
+import CameraStories from "./src/pages/CamaraStories";
+import ReadStories from "./src/pages/ReadStories";
+import AwayReadStories from "./src/pages/AwayReadStories";
 import 'react-native-gesture-handler'
 import { BottomTab } from "./src/navigation/BottomTab";
 import { NavigationContainer } from "@react-navigation/native";
@@ -84,9 +89,9 @@ function Home() {
       />
       <Tab.Screen
         name="Nuevo"
-        component={NewTweetPage}
+        component={NewPostPage}
         options={{
-          tabBarLabel: "Tweetear",
+          tabBarLabel: "Post",
           tabBarIcon: ({ color, size }) => (
             <Icon name="plus-box" color={color} size={size} />
           ),
@@ -283,8 +288,8 @@ export default function App() {
             }}
           />
           <Stack.Screen
-            name="OwnTweetsWithImage"
-            component={OwnTweetsWithImage}
+            name="OwnPostWithImage"
+            component={OwnPostWithImage}
             options={{
               title: "",
               headerStyle: {
@@ -294,7 +299,7 @@ export default function App() {
           />
           <Stack.Screen
             name="newTweet"
-            component={NewTweetPage}
+            component={NewPostPage}
             options={{
               title: "",
               headerStyle: {
@@ -373,6 +378,57 @@ export default function App() {
               },
             }}
           />
+               <Stack.Screen
+            name="stories"
+            component={StoriesPage}
+            options={{
+              title: "",
+              headerStyle: {
+                backgroundColor: "#afc7d8",
+              },
+            }}
+          />    
+           <Stack.Screen
+          name="Readstories"
+          component={ReadStories}
+          options={{
+            title: "",
+            headerStyle: {
+              backgroundColor: "#afc7d8",
+            },
+          }}
+        />    
+
+            <Stack.Screen
+          name="AwayReadstories"
+          component={AwayReadStories}
+          options={{
+            title: "",
+            headerStyle: {
+              backgroundColor: "#afc7d8",
+            },
+          }}
+        /> 
+           <Stack.Screen
+          name="DM"
+          component={DMPage}
+          options={{
+            title: "",
+            headerStyle: {
+              backgroundColor: "#afc7d8",
+            },
+          }}
+        />
+          <Stack.Screen
+          name="CameraStories"
+          component={CameraStories}
+          options={{
+            title: "",
+            headerStyle: {
+              backgroundColor: "#afc7d8",
+            },
+          }}
+        />
           <Stack.Screen
             name="homepage"
             component={Home}
