@@ -1,30 +1,35 @@
 import { useAuthStore } from "./src/store/auth.store";
-import LoginPage from "./src/pages/LoginPage";
-import RegisterPage from "./src/pages/RegisterPage";
+import LoginPage from "./src/pagesListas/LoginPage";
+import RegisterPage from "./src/pagesListas/RegisterPage";
 import HomePage from "./src/pages/HomePage";
 import ProfilePage from "./src/pages/ProfilePage";
-import EditProfilePage from "./src/pages/EditProfile";
+import EditProfilePage from "./src/pagesListas/EditProfile";
 import SendEmailPage from "./src/pages/SendEmail";
 import BuscarPage from "./src/pages/BuscarPage";
 import AwayProfile from "./src/pages/AwayProfile";
 import SiguiendoPage from "./src/pages/Siguiendo";
-import SettingsPage from "./src/pages/SettingsPage";
-import TweetsPage from "./src/pages/TweetsPage";
-import TweetsWithImage from "./src/pages/TweetsWithImage";
-import OwnTweetsPage from "./src/pages/OwnTweetsPage";
-import OwnTweetsWithImage from "./src/pages/OwnTweetsWithImage";
-import NewTweetPage from "./src/pages/NewTweet";
+import SettingsPage from "./src/pagesListas/SettingsPage";
+
+import PostWithImage from "./src/pages/PostWithImage";
+
+import OwnPostWithImage from "./src/pages/OwnPostWithImage";
+import NewPostPage from "./src/pages/NewPost";
 import OwnComments from "./src/pages/OwnComments";
 import AwayComments from "./src/pages/AwayComments";
 import ShowLikePage from "./src/pages/ShowLikes";
 import ShowLikeCommentsPage from "./src/pages/ShowLikesComments";
-import ProfileUpdatePasswordPage from "./src/pages/ProfileUpdatePassword";
-import ProfileUpdateNamelastPage from "./src/pages/ProfileUpdateName&last";
-import ProfileUpdateBio from "./src/pages/ProfileUpdateBio";
+import ProfileUpdatePasswordPage from "./src/pagesListas/ProfileUpdatePassword";
+import ProfileUpdateNamelastPage from "./src/pagesListas/ProfileUpdateName&last";
+import ProfileUpdateBio from "./src/pagesListas/ProfileUpdateBio";
 import followingPage from "./src/pages/Following";
 import AwayfollowingPage from "./src/pages/AwayFollowing";
 import followersPage from "./src/pages/Followers";
 import AwayfollowersPage from "./src/pages/AwayFollowers";
+import DMPage from "./src/pages/DM";
+import StoriesPage from "./src/pages/Stories";
+import CameraStories from "./src/pages/CamaraStories";
+import ReadStories from "./src/pages/ReadStories";
+import AwayReadStories from "./src/pages/AwayReadStories";
 import 'react-native-gesture-handler'
 import { BottomTab } from "./src/navigation/BottomTab";
 import { NavigationContainer } from "@react-navigation/native";
@@ -84,9 +89,9 @@ function Home() {
       />
       <Tab.Screen
         name="Nuevo"
-        component={NewTweetPage}
+        component={NewPostPage}
         options={{
-          tabBarLabel: "Tweetear",
+          tabBarLabel: "Post",
           tabBarIcon: ({ color, size }) => (
             <Icon name="plus-box" color={color} size={size} />
           ),
@@ -232,19 +237,10 @@ export default function App() {
               },
             }}
           />
+         
           <Stack.Screen
-            name="showTweets"
-            component={TweetsPage}
-            options={{
-              title: "",
-              headerStyle: {
-                backgroundColor: "#afc7d8",
-              },
-            }}
-          />
-          <Stack.Screen
-            name="TweetsWithImage"
-            component={TweetsWithImage}
+            name="PostWithImage"
+            component={PostWithImage}
             options={{
               title: "",
               headerStyle: {
@@ -272,19 +268,10 @@ export default function App() {
               },
             }}
           />
+        
           <Stack.Screen
-            name="OwnTweets"
-            component={OwnTweetsPage}
-            options={{
-              title: "",
-              headerStyle: {
-                backgroundColor: "#afc7d8",
-              },
-            }}
-          />
-          <Stack.Screen
-            name="OwnTweetsWithImage"
-            component={OwnTweetsWithImage}
+            name="OwnPostWithImage"
+            component={OwnPostWithImage}
             options={{
               title: "",
               headerStyle: {
@@ -294,7 +281,7 @@ export default function App() {
           />
           <Stack.Screen
             name="newTweet"
-            component={NewTweetPage}
+            component={NewPostPage}
             options={{
               title: "",
               headerStyle: {
@@ -373,6 +360,57 @@ export default function App() {
               },
             }}
           />
+               <Stack.Screen
+            name="stories"
+            component={StoriesPage}
+            options={{
+              title: "",
+              headerStyle: {
+                backgroundColor: "#afc7d8",
+              },
+            }}
+          />    
+           <Stack.Screen
+          name="Readstories"
+          component={ReadStories}
+          options={{
+            title: "",
+            headerStyle: {
+              backgroundColor: "#afc7d8",
+            },
+          }}
+        />    
+
+            <Stack.Screen
+          name="AwayReadstories"
+          component={AwayReadStories}
+          options={{
+            title: "",
+            headerStyle: {
+              backgroundColor: "#afc7d8",
+            },
+          }}
+        /> 
+           <Stack.Screen
+          name="DM"
+          component={DMPage}
+          options={{
+            title: "",
+            headerStyle: {
+              backgroundColor: "#afc7d8",
+            },
+          }}
+        />
+          <Stack.Screen
+          name="CameraStories"
+          component={CameraStories}
+          options={{
+            title: "",
+            headerStyle: {
+              backgroundColor: "#afc7d8",
+            },
+          }}
+        />
           <Stack.Screen
             name="homepage"
             component={Home}

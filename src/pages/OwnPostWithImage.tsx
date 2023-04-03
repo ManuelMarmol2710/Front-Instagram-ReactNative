@@ -16,7 +16,8 @@ import axios from "../libs/axios";
 import { useAuthStore } from "../store/auth.store";
 import { TextInput, IconButton } from "@react-native-material/core";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
-
+import {  Dimensions } from 'react-native';
+const { width, height } = Dimensions.get('screen');
 function OwnPostWithImage({ route, navigation }: { route: any; navigation: any }) {
   const { owner, post, time, _id, url, url2,
     url3,
@@ -33,7 +34,16 @@ function OwnPostWithImage({ route, navigation }: { route: any; navigation: any }
   const [isLike, setisLike] = useState(false);
   const [comment, setText] = useState("");
   const [task, setTask] = useState([]);
+  const [idUrl, setIdUrl] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
+  const UrlId = async () => {
+    return axios.get(`idPost/${_id}`).then((response) => {
+      setIdUrl([response.data]);
+ 
+    })
+
+
+  }
   const commentsPress = async () => {
     setText("");
     return axios.post(`comment/${_id}/${username}`, {
@@ -81,6 +91,8 @@ function OwnPostWithImage({ route, navigation }: { route: any; navigation: any }
     obtenerLike();
     getComments();
     getCountLike();
+    UrlId();
+   
   }, []);
 
   const OnRefresh = useCallback(async () => {
@@ -114,8 +126,7 @@ function OwnPostWithImage({ route, navigation }: { route: any; navigation: any }
           <RefreshControl refreshing={refreshing} onRefresh={OnRefresh} />
         }
       >
-
-        <View
+     <View
           style={{
             paddingHorizontal: 210,
             paddingVertical: 1,
@@ -150,333 +161,1218 @@ function OwnPostWithImage({ route, navigation }: { route: any; navigation: any }
             </Text>
           </TouchableOpacity>
         </View>
-
-        <View
-          style={{
-            backgroundColor: "#afc7d8",
-            paddingTop: 10,
-            paddingLeft: 10,
-            paddingRight: 10,
-          }}
-        >
-          <Text
-            style={{
-              textAlign: "left",
-              fontSize: 16,
-              fontWeight: "500",
-              color: "#333",
-              paddingTop: 15,
-              paddingLeft: 10,
-              paddingRight: 10,
-              paddingBottom: 5,
-              paddingHorizontal: 10,
-              borderColor: "black",
-              borderWidth: 3,
-              borderRadius: 15,
-              backgroundColor: "#fff",
-              overflow: "hidden",
-            }}
-          >
-            <Text
-              style={{
-                paddingTop: 20,
-                paddingLeft: 30,
-                textAlign: "left",
-                fontWeight: "700",
-                fontSize: 16,
-                color: "#000000",
-              }}
-            >
-              @{owner}:{" "}
-              <Icon
-                style={{ padding: 10, textAlign: "left" }}
-                name="brush"
-                color="#000000"
-                size={25}
-              />
-              {"\n"}
-              {"\n"}
-            </Text>
-
-            <Text
-              style={{
-                paddingTop: 20,
-                paddingLeft: 80,
-                paddingRight: 60,
-                textAlign: "left",
-                fontSize: 14,
-              }}
-            >
-              {" "}
-              {post} {"\n"}
-              {"\n"}
-              {"\n"}
-            </Text>
-           <ScrollView horizontal= {true}>
-            <View style={{
-              
-       
-              
-            }}>
-              <View style={{ paddingLeft: 45, paddingTop: 5 }}>
-                <Image
-                  style={{
-                    width: 300,
-                    height: 300,
-                    borderColor: "#000000",
-                    borderWidth: 3,
-                    borderRadius: 10,
-                  }}
-                  source={{ uri: `${url}` }}
-                />
-              </View>
-
-              <View style={{ paddingLeft: 45, paddingTop: 5 }}>
-                <Image
-                  style={{
-                    width: 300,
-                    height: 300,
-                    borderColor: "#000000",
-                    borderWidth: 3,
-                    borderRadius: 10,
-                  }}
-                  source={{ uri: `${url2}` }}
-                />
-              </View>
-              <View style={{ paddingLeft: 45, paddingTop: 5 }}>
-                <Image
-                  style={{
-                    width: 300,
-                    height: 300,
-                    borderColor: "#000000",
-                    borderWidth: 3,
-                    borderRadius: 10,
-                  }}
-                  source={{ uri: `${url3}` }}
-                />
-              </View>
-              <View style={{ paddingLeft: 45, paddingTop: 5 }}>
-                <Image
-                  style={{
-                    width: 300,
-                    height: 300,
-                    borderColor: "#000000",
-                    borderWidth: 3,
-                    borderRadius: 10,
-                  }}
-                  source={{ uri: `${url4}` }}
-                />
-              </View>
-              <View style={{ paddingLeft: 45, paddingTop: 5 }}>
-                <Image
-                  style={{
-                    width: 300,
-                    height: 300,
-                    borderColor: "#000000",
-                    borderWidth: 3,
-                    borderRadius: 10,
-                  }}
-                  source={{ uri: `${url5}` }}
-                />
-              </View>
-              <View style={{ paddingLeft: 45, paddingTop: 5 }}>
-                <Image
-                  style={{
-                    width: 300,
-                    height: 300,
-                    borderColor: "#000000",
-                    borderWidth: 3,
-                    borderRadius: 10,
-                  }}
-                  source={{ uri: `${url6}` }}
-                />
-              </View>
-              <View style={{ paddingLeft: 45, paddingTop: 5 }}>
-                <Image
-                  style={{
-                    width: 300,
-                    height: 300,
-                    borderColor: "#000000",
-                    borderWidth: 3,
-                    borderRadius: 10,
-                  }}
-                  source={{ uri: `${url7}` }}
-                />
-              </View>
-              <View style={{ paddingLeft: 45, paddingTop: 5 }}>
-                <Image
-                  style={{
-                    width: 300,
-                    height: 300,
-                    borderColor: "#000000",
-                    borderWidth: 3,
-                    borderRadius: 10,
-                  }}
-                  source={{ uri: `${url8}` }}
-                />
-              </View>
-              <View style={{ paddingLeft: 45, paddingTop: 5 }}>
-                <Image
-                  style={{
-                    width: 300,
-                    height: 300,
-                    borderColor: "#000000",
-                    borderWidth: 3,
-                    borderRadius: 10,
-                  }}
-                  source={{ uri: `${url9}` }}
-                />
-              </View>
-              <View style={{ paddingLeft: 45, paddingTop: 5 }}>
-                <Image
-                  style={{
-                    width: 300,
-                    height: 300,
-                    borderColor: "#000000",
-                    borderWidth: 3,
-                    borderRadius: 10,
-                  }}
-                  source={{ uri: `${url10}` }}
-                />
-              </View>
-            </View>
-            </ScrollView>
-           
-           
-            <Text
-              style={{
-                paddingTop: 20,
-                paddingLeft: 80,
-                paddingRight: 60,
-                textAlign: "right",
-                fontSize: 14,
-              }}
-            >
-              {" "}
-              {"\n"}
-              {"\n"}
-              {"\n"}
-              || Subido el: {time}
-            </Text>
-          </Text>
-
-
-
-          <View
-            style={{
-              paddingHorizontal: 0,
-              paddingTop: 0,
-              backgroundColor: "#fff",
-              borderRadius: 70,
-              borderWidth: 3,
-              margin: 100,
-              marginTop: 10,
-              marginBottom: 35,
-            }}
-          >
-            <View style={{ paddingLeft: 20 }}>
-              <Pressable
-                style={{ paddingLeft: 55, paddingTop: 20, paddingBottom: 0 }}
-                onPress={onClick}
-              >
-                <MaterialCommunityIcons
-                  name={like ? "heart" : "heart-outline"}
-                  size={32}
-                  color={like ? "red" : "black"}
-                />
-                <Text
-                  style={{
-                    paddingVertical: 0,
-                    paddingLeft: 0,
-                    paddingRight: 0,
-                    paddingTop: 10,
-                    marginLeft: -10,
-                    marginBottom: 10,
-                    textAlign: "left",
-                    fontSize: 14,
-                    fontWeight: "700"
-                  }}
-                  onPress={() =>
-                    navigation.navigate("showLikes", {
-                      id_tweet: _id,
-                      owner: owner,
-                    })
-                  }
-                >
-                  {" "}
-                  Likes: {"" + (isLike ? like : countLike)}
-                </Text>
-              </Pressable>
-            </View>
-          </View>
-
-          <View style={{ borderRadius: 10, borderWidth: 3, paddingTop: 5 }}>
-            <Text
-              style={{
-                textAlign: "left",
-                fontSize: 30,
-                fontWeight: "500",
-                color: "#333",
-                paddingBottom: 25,
-                paddingLeft: 10,
-                paddingTop: 5,
-              }}
-            >
-              <Icon
-                style={{ padding: 12, textAlign: "left" }}
-                name="reply"
-                color="#000000"
-                size={35}
-              />
-              Comentarios:
-            </Text>
-
-            <View
-              style={{
-                backgroundColor: "#fff",
-                borderRadius: 50,
-                margin: 10,
-                borderWidth: 4,
-              }}
-            >
-              <View style={{ paddingHorizontal: 25, paddingTop: 0 }}>
-                <TextInput
-                  color="#066cb4"
-                  placeholder="Agregar comentario al Tweet"
-                  onChangeText={(text) => setText(text)}
-                  style={{ paddingHorizontal: 30, paddingVertical: 20 }}
-                  value={comment}
-                  numberOfLines={4}
-                  maxLength={120}
-                  editable
-                />
-
-                <View style={{ paddingHorizontal: 200, paddingVertical: 1 }}>
-                  <TouchableOpacity
-                    onPress={commentsPress}
+        <View style={{ paddingHorizontal: 25, paddingTop: 0 }}>
+        <Text
                     style={{
-                      backgroundColor: "#000000",
-                      padding: 10,
-                      borderRadius: 10,
-                      marginBottom: 30,
-                      marginLeft: -30,
-                      marginRight: -70,
+                      textAlign: "center",
+                      fontSize: 16,
+                      fontWeight: "500",
+                      color: "#333",
+                      paddingTop: 15,
+                      paddingBottom: 5,
+                      paddingVertical:20,
+                      paddingHorizontal:20,
+                      borderColor: "black",
+                      borderWidth: 2,
+                      borderRadius: 1,
+                      backgroundColor: "#fff",
+                      overflow: "hidden",
                     }}
                   >
-                    <Text
+                   <Text
                       style={{
+                        paddingTop: 20,
+                        paddingLeft: 30,
+                        textAlign: "left",
+                        fontWeight: "700",
+                        fontSize: 16,
+                        color: "#000000",
+                      }}
+                    >
+                      @{owner}
+                    
+                     </Text>
+       
+                     </Text>
+        </View>
+
+   
+          <View style={{ paddingHorizontal: 12, paddingTop: 0 }}>
+          <FlatList
+            data={idUrl}
+                 numColumns={40}
+            renderItem={({ item }) => {
+              if (item['url2']=== undefined){
+                return (<ScrollView horizontal={true}>
+                                     
+                  <Text
+               style={{
+                 marginTop: 10,
+                 fontWeight: "500",
+                 color: "#333",
+                 paddingTop: 15,
+                 paddingBottom: 5,
+                 paddingHorizontal: 20,
+                 borderColor: "black",
+                 borderWidth: 2,
+                 borderRadius: 1,
+                 backgroundColor: "#fff",
+            
+               }}
+             >
+             <View style={{  width: width * 0.9, display: "flex", 
+                           flexDirection: "row", flexWrap: "wrap", 
+                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+               <Image
+                style={{
+                 
+                 width: "85%", height: 400,
+                  borderWidth: 90,
+                  borderRadius: 10,
+                  
+                 }}
+                 
+                 source={{ uri: `${item["url"]}` }}
+                 />
+                   </View>
+           
+      
+                </Text>                 
+                </ScrollView>)
+              }
+              if(item['url3']=== undefined) {
+                return (<ScrollView horizontal={true}>
+                                     
+                  <Text
+               style={{
+                 marginTop: 10,
+                 fontWeight: "500",
+                 color: "#333",
+                 paddingTop: 15,
+                 paddingBottom: 5,
+                 paddingHorizontal: 20,
+                 borderColor: "black",
+                 borderWidth: 2,
+                 borderRadius: 1,
+                 backgroundColor: "#fff",
+            
+               }}
+             >
+             <View style={{  width: width * 0.9, display: "flex", 
+                           flexDirection: "row", flexWrap: "wrap", 
+                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+               <Image
+                style={{
+                 
+                 width: "85%", height: 400,
+                  borderWidth: 90,
+                  borderRadius: 10,
+                  
+                 }}
+                 
+                 source={{ uri: `${item["url"]}` }}
+                 />
+                   </View>
+                   <View style={{  width: width * 0.9, display: "flex", 
+                           flexDirection: "row", flexWrap: "wrap", 
+                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+               <Image
+                style={{
+                
+                 width: "85%", height: 400,
+                  borderWidth: 3,
+                  borderRadius: 10,
+                 }}
+                 
+                 source={{ uri: `${item["url2"]}` }}
+                 />
+                 </View>
+                 
+      
+                </Text>                 
+                </ScrollView>)
+              }
+              if(item['url4']=== undefined){
+                return (<ScrollView horizontal={true}>
+                                     
+                  <Text
+               style={{
+                 marginTop: 10,
+                 fontWeight: "500",
+                 color: "#333",
+                 paddingTop: 15,
+                 paddingBottom: 5,
+                 paddingHorizontal: 20,
+                 borderColor: "black",
+                 borderWidth: 2,
+                 borderRadius: 1,
+                 backgroundColor: "#fff",
+            
+               }}
+             >
+             <View style={{  width: width * 0.9, display: "flex", 
+                           flexDirection: "row", flexWrap: "wrap", 
+                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+               <Image
+                style={{
+                 
+                 width: "85%", height: 400,
+                  borderWidth: 90,
+                  borderRadius: 10,
+                  
+                 }}
+                 
+                 source={{ uri: `${item["url"]}` }}
+                 />
+                   </View>
+                   <View style={{  width: width * 0.9, display: "flex", 
+                           flexDirection: "row", flexWrap: "wrap", 
+                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+               <Image
+                style={{
+                
+                 width: "85%", height: 400,
+                  borderWidth: 3,
+                  borderRadius: 10,
+                 }}
+                 
+                 source={{ uri: `${item["url2"]}` }}
+                 />
+                 </View>
+                 <View style={{  width: width * 0.9, display: "flex", 
+                           flexDirection: "row", flexWrap: "wrap", 
+                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                style={{
+                 width: "85%", height: 400,
+                
+                  borderWidth: 3,
+                  borderRadius: 10,
+                 }}
+                 
+                 source={{ uri: `${item["url3"]}` }}
+                 />
+           </View>
+          
+      
+                </Text>                 
+                </ScrollView>)
+              }
+              if(item['url5']=== undefined){
+                return (<ScrollView horizontal={true}>
+                                     
+                  <Text
+               style={{
+                 marginTop: 10,
+                 fontWeight: "500",
+                 color: "#333",
+                 paddingTop: 15,
+                 paddingBottom: 5,
+                 paddingHorizontal: 20,
+                 borderColor: "black",
+                 borderWidth: 2,
+                 borderRadius: 1,
+                 backgroundColor: "#fff",
+            
+               }}
+             >
+             <View style={{  width: width * 0.9, display: "flex", 
+                           flexDirection: "row", flexWrap: "wrap", 
+                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+               <Image
+                style={{
+                 
+                 width: "85%", height: 400,
+                  borderWidth: 90,
+                  borderRadius: 10,
+                  
+                 }}
+                 
+                 source={{ uri: `${item["url"]}` }}
+                 />
+                   </View>
+                   <View style={{  width: width * 0.9, display: "flex", 
+                           flexDirection: "row", flexWrap: "wrap", 
+                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+               <Image
+                style={{
+                
+                 width: "85%", height: 400,
+                  borderWidth: 3,
+                  borderRadius: 10,
+                 }}
+                 
+                 source={{ uri: `${item["url2"]}` }}
+                 />
+                 </View>
+                 <View style={{  width: width * 0.9, display: "flex", 
+                           flexDirection: "row", flexWrap: "wrap", 
+                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                style={{
+                 width: "85%", height: 400,
+                
+                  borderWidth: 3,
+                  borderRadius: 10,
+                 }}
+                 
+                 source={{ uri: `${item["url3"]}` }}
+                 />
+           </View>
+           <View style={{  width: width * 0.9, display: "flex", 
+                           flexDirection: "row", flexWrap: "wrap", 
+                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+           <Image
+                style={{
+                 width: "85%", height: 400,
+               
+                  borderWidth: 3,
+                  borderRadius: 10,
+                 }}
+                 
+                 source={{ uri: `${item["url4"]}` }}
+                 />
+         </View>
+      
+                </Text>                 
+                </ScrollView>)
+              }
+              if(item['url6']=== undefined){
+                return (<ScrollView horizontal={true}>
+                                     
+                  <Text
+               style={{
+                 marginTop: 10,
+                 fontWeight: "500",
+                 color: "#333",
+                 paddingTop: 15,
+                 paddingBottom: 5,
+                 paddingHorizontal: 20,
+                 borderColor: "black",
+                 borderWidth: 2,
+                 borderRadius: 1,
+                 backgroundColor: "#fff",
+            
+               }}
+             >
+             <View style={{  width: width * 0.9, display: "flex", 
+                           flexDirection: "row", flexWrap: "wrap", 
+                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+               <Image
+                style={{
+                 
+                 width: "85%", height: 400,
+                  borderWidth: 90,
+                  borderRadius: 10,
+                  
+                 }}
+                 
+                 source={{ uri: `${item["url"]}` }}
+                 />
+                   </View>
+                   <View style={{  width: width * 0.9, display: "flex", 
+                           flexDirection: "row", flexWrap: "wrap", 
+                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+               <Image
+                style={{
+                
+                 width: "85%", height: 400,
+                  borderWidth: 3,
+                  borderRadius: 10,
+                 }}
+                 
+                 source={{ uri: `${item["url2"]}` }}
+                 />
+                 </View>
+                 <View style={{  width: width * 0.9, display: "flex", 
+                           flexDirection: "row", flexWrap: "wrap", 
+                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                style={{
+                 width: "85%", height: 400,
+                
+                  borderWidth: 3,
+                  borderRadius: 10,
+                 }}
+                 
+                 source={{ uri: `${item["url3"]}` }}
+                 />
+           </View>
+           <View style={{  width: width * 0.9, display: "flex", 
+                           flexDirection: "row", flexWrap: "wrap", 
+                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+           <Image
+                style={{
+                 width: "85%", height: 400,
+               
+                  borderWidth: 3,
+                  borderRadius: 10,
+                 }}
+                 
+                 source={{ uri: `${item["url4"]}` }}
+                 />
+         </View>
+         <View style={{  width: width * 0.9, display: "flex", 
+                           flexDirection: "row", flexWrap: "wrap", 
+                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+           <Image
+                style={{
+                 width: "85%", height: 400,
+               
+                  borderWidth: 3,
+                  borderRadius: 10,
+                 }}
+                 
+                 source={{ uri: `${item["url5"]}` }}
+                 />
+         </View>
+               </Text>                 
+                </ScrollView>)
+              }
+              if(item['url7']=== undefined){
+                return (<ScrollView horizontal={true}>
+                                     
+                  <Text
+               style={{
+                 marginTop: 10,
+                 fontWeight: "500",
+                 color: "#333",
+                 paddingTop: 15,
+                 paddingBottom: 5,
+                 paddingHorizontal: 20,
+                 borderColor: "black",
+                 borderWidth: 2,
+                 borderRadius: 1,
+                 backgroundColor: "#fff",
+            
+               }}
+             >
+             <View style={{  width: width * 0.9, display: "flex", 
+                           flexDirection: "row", flexWrap: "wrap", 
+                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+               <Image
+                style={{
+                 
+                 width: "85%", height: 400,
+                  borderWidth: 90,
+                  borderRadius: 10,
+                  
+                 }}
+                 
+                 source={{ uri: `${item["url"]}` }}
+                 />
+                   </View>
+                   <View style={{  width: width * 0.9, display: "flex", 
+                           flexDirection: "row", flexWrap: "wrap", 
+                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+               <Image
+                style={{
+                
+                 width: "85%", height: 400,
+                  borderWidth: 3,
+                  borderRadius: 10,
+                 }}
+                 
+                 source={{ uri: `${item["url2"]}` }}
+                 />
+                 </View>
+                 <View style={{  width: width * 0.9, display: "flex", 
+                           flexDirection: "row", flexWrap: "wrap", 
+                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                style={{
+                 width: "85%", height: 400,
+                
+                  borderWidth: 3,
+                  borderRadius: 10,
+                 }}
+                 
+                 source={{ uri: `${item["url3"]}` }}
+                 />
+           </View>
+           <View style={{  width: width * 0.9, display: "flex", 
+                           flexDirection: "row", flexWrap: "wrap", 
+                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+           <Image
+                style={{
+                 width: "85%", height: 400,
+               
+                  borderWidth: 3,
+                  borderRadius: 10,
+                 }}
+                 
+                 source={{ uri: `${item["url4"]}` }}
+                 />
+         </View>
+         <View style={{  width: width * 0.9, display: "flex", 
+                           flexDirection: "row", flexWrap: "wrap", 
+                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+           <Image
+                style={{
+                 width: "85%", height: 400,
+               
+                  borderWidth: 3,
+                  borderRadius: 10,
+                 }}
+                 
+                 source={{ uri: `${item["url5"]}` }}
+                 />
+         </View>
+         <View style={{  width: width * 0.9, display: "flex", 
+                           flexDirection: "row", flexWrap: "wrap", 
+                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+           <Image
+                style={{
+                 width: "85%", height: 400,
+               
+                  borderWidth: 3,
+                  borderRadius: 10,
+                 }}
+                 
+                 source={{ uri: `${item["url6"]}` }}
+                 />
+         </View>
+                </Text>                 
+                </ScrollView>)
+              }
+        if(item['url8']=== undefined ){
+return(
+  <ScrollView horizontal={true}>
+                                     
+                       <Text
+                    style={{
+                      marginTop: 10,
+                      fontWeight: "500",
+                      color: "#333",
+                      paddingTop: 15,
+                      paddingBottom: 5,
+                      paddingHorizontal: 20,
+                      borderColor: "black",
+                      borderWidth: 2,
+                      borderRadius: 1,
+                      backgroundColor: "#fff",
+                 
+                    }}
+                  >
+                  <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                    <Image
+                     style={{
+                      
+                      width: "85%", height: 400,
+                       borderWidth: 90,
+                       borderRadius: 10,
+                       
+                      }}
+                      
+                      source={{ uri: `${item["url"]}` }}
+                      />
+                        </View>
+                        <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                    <Image
+                     style={{
+                     
+                      width: "85%", height: 400,
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url2"]}` }}
+                      />
+                      </View>
+                      <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                     <Image
+                     style={{
+                      width: "85%", height: 400,
+                     
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url3"]}` }}
+                      />
+                </View>
+                <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url4"]}` }}
+                      />
+              </View>
+              <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url5"]}` }}
+                      />
+              </View>
+              <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url6"]}` }}
+                      />
+              </View>
+              <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url7"]}` }}
+                      />
+              </View>
+                                </Text>                 
+                     </ScrollView>
+)
+        }
+              if (item['url9']=== undefined) {
+              return(
+                <ScrollView horizontal={true}>
+                                     
+                       <Text
+                    style={{
+                      marginTop: 10,
+                      fontWeight: "500",
+                      color: "#333",
+                      paddingTop: 15,
+                      paddingBottom: 5,
+                      paddingHorizontal: 20,
+                      borderColor: "black",
+                      borderWidth: 2,
+                      borderRadius: 1,
+                      backgroundColor: "#fff",
+                 
+                    }}
+                  >
+                  <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                    <Image
+                     style={{
+                      
+                      width: "85%", height: 400,
+                       borderWidth: 90,
+                       borderRadius: 10,
+                       
+                      }}
+                      
+                      source={{ uri: `${item["url"]}` }}
+                      />
+                        </View>
+                        <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                    <Image
+                     style={{
+                     
+                      width: "85%", height: 400,
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url2"]}` }}
+                      />
+                      </View>
+                      <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                     <Image
+                     style={{
+                      width: "85%", height: 400,
+                     
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url3"]}` }}
+                      />
+                </View>
+                <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url4"]}` }}
+                      />
+              </View>
+              <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url5"]}` }}
+                      />
+              </View>
+              <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url6"]}` }}
+                      />
+              </View>
+              <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url7"]}` }}
+                      />
+              </View>
+              <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url8"]}` }}
+                      />
+              </View>
+                     </Text>                 
+                     </ScrollView>
+              )
+            }
+            
+              if(item['url10'] === undefined ){
+return(
+  <ScrollView horizontal={true}>
+                                     
+                       <Text
+                    style={{
+                      marginTop: 10,
+                      fontWeight: "500",
+                      color: "#333",
+                      paddingTop: 15,
+                      paddingBottom: 5,
+                      paddingHorizontal: 20,
+                      borderColor: "black",
+                      borderWidth: 2,
+                      borderRadius: 1,
+                      backgroundColor: "#fff",
+                 
+                    }}
+                  >
+                  <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                    <Image
+                     style={{
+                      
+                      width: "85%", height: 400,
+                       borderWidth: 90,
+                       borderRadius: 10,
+                       
+                      }}
+                      
+                      source={{ uri: `${item["url"]}` }}
+                      />
+                        </View>
+                        <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                    <Image
+                     style={{
+                     
+                      width: "85%", height: 400,
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url2"]}` }}
+                      />
+                      </View>
+                      <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                     <Image
+                     style={{
+                      width: "85%", height: 400,
+                     
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url3"]}` }}
+                      />
+                </View>
+                <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url4"]}` }}
+                      />
+              </View>
+              <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url5"]}` }}
+                      />
+              </View>
+              <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url6"]}` }}
+                      />
+              </View>
+              <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url7"]}` }}
+                      />
+              </View>
+              <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url8"]}` }}
+                      />
+              </View>
+              <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url9"]}` }}
+                      />
+              </View>
+                     </Text>                 
+                     </ScrollView>
+)
+            } else {
+              return (
+                <ScrollView horizontal={true}>
+                                     
+                       <Text
+                    style={{
+                      marginTop: 10,
+                      fontWeight: "500",
+                      color: "#333",
+                      paddingTop: 15,
+                      paddingBottom: 5,
+                      paddingHorizontal: 20,
+                      borderColor: "black",
+                      borderWidth: 2,
+                      borderRadius: 1,
+                      backgroundColor: "#fff",
+                 
+                    }}
+                  >
+                  <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                    <Image
+                     style={{
+                      
+                      width: "85%", height: 400,
+                       borderWidth: 90,
+                       borderRadius: 10,
+                       
+                      }}
+                      
+                      source={{ uri: `${item["url"]}` }}
+                      />
+                        </View>
+                        <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                    <Image
+                     style={{
+                     
+                      width: "85%", height: 400,
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url2"]}` }}
+                      />
+                      </View>
+                      <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                     <Image
+                     style={{
+                      width: "85%", height: 400,
+                     
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url3"]}` }}
+                      />
+                </View>
+                <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url4"]}` }}
+                      />
+              </View>
+              <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url5"]}` }}
+                      />
+              </View>
+              <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url6"]}` }}
+                      />
+              </View>
+              <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url7"]}` }}
+                      />
+              </View>
+              <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url8"]}` }}
+                      />
+              </View>
+              <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url9"]}` }}
+                      />
+              </View>
+              <View style={{  width: width * 0.9, display: "flex", 
+                                flexDirection: "row", flexWrap: "wrap", 
+                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
+                <Image
+                     style={{
+                      width: "85%", height: 400,
+                    
+                       borderWidth: 3,
+                       borderRadius: 10,
+                      }}
+                      
+                      source={{ uri: `${item["url10"]}` }}
+                      />
+              </View>
+                  
+         
+           
+                     </Text>                 
+                     </ScrollView>
+              );
+                    }
+            }}
+          />
+          </View>
+          <View
+          style={{
+            paddingHorizontal: 0,
+            paddingTop: 0,
+
+            backgroundColor: "#fff",
+            borderRadius: 30,
+            borderWidth: 3,
+            margin: 35,
+            marginTop: 10,
+            marginBottom: 1,
+          }}
+        >
+     
+          <Text
+                      style={{
+                        paddingTop: -60,
+                        paddingLeft: 2,
                         textAlign: "center",
                         fontWeight: "700",
                         fontSize: 16,
-                        color: "#fff",
+                        color: "#000000",
                       }}
                     >
-                      Comentar
-                    </Text>
-                  </TouchableOpacity>
-                </View>
+                     
+                      {post}
+                    
+                     </Text>
+                     <Text
+              style={{
+                paddingTop: 0,
+                paddingLeft: 20,
+                paddingRight: 20,
+                textAlign: "left",
+                fontSize: 14,
+              
+              }}
+            >
+              {" "}
+              
+              
+              || Subido el: {time}
+            </Text>
+                       </View>
+
+        <View
+          style={{
+            paddingHorizontal: 0,
+            paddingTop: 0,
+            backgroundColor: "#fff",
+            borderRadius: 70,
+            borderWidth: 3,
+            margin: 100,
+            marginTop: 10,
+            marginBottom: 35,
+          }}
+        >
+          <View style={{ paddingLeft: 20 }}>
+            <Pressable
+              style={{ paddingLeft: 55, paddingTop: 20, paddingBottom: 0 }}
+              onPress={onClick}
+            >
+              <MaterialCommunityIcons
+                name={like ? "heart" : "heart-outline"}
+                size={32}
+                color={like ? "red" : "black"}
+              />
+              <Text
+                style={{
+                  paddingVertical: 0,
+                  paddingLeft: 0,
+                  paddingRight: 0,
+                  paddingTop: 10,
+                  marginLeft: -10,
+                  marginBottom: 10,
+                  textAlign: "left",
+                  fontSize: 14,
+                  fontWeight: "700"
+                }}
+                onPress={() =>
+                  navigation.navigate("showLikes", {
+                    id_tweet: _id,
+                    owner: owner,
+                  })
+                }
+              >
+                {" "}
+                Likes: {"" + (isLike ? like : countLike)}
+              </Text>
+            </Pressable>
+          </View>
+        </View>
+
+        <View style={{ borderRadius: 10, borderWidth: 3, paddingTop: 5 }}>
+          <Text
+            style={{
+              textAlign: "left",
+              fontSize: 30,
+              fontWeight: "500",
+              color: "#333",
+              paddingBottom: 25,
+              paddingLeft: 10,
+              paddingTop: 5,
+            }}
+          >
+            <Icon
+              style={{ padding: 12, textAlign: "left" }}
+              name="reply"
+              color="#000000"
+              size={35}
+            />
+            Comentarios:
+          </Text>
+
+          <View
+            style={{
+              backgroundColor: "#fff",
+              borderRadius: 50,
+              margin: 10,
+              borderWidth: 4,
+            }}
+          >
+            <View style={{ paddingHorizontal: 25, paddingTop: 0 }}>
+              <TextInput
+                color="#066cb4"
+                placeholder="Agregar comentario al Tweet"
+                onChangeText={(text) => setText(text)}
+                style={{ paddingHorizontal: 30, paddingVertical: 20 }}
+                value={comment}
+                numberOfLines={4}
+                maxLength={120}
+                editable
+              />
+
+              <View style={{ paddingHorizontal: 200, paddingVertical: 1 }}>
+                <TouchableOpacity
+                  onPress={commentsPress}
+                  style={{
+                    backgroundColor: "#000000",
+                    padding: 10,
+                    borderRadius: 10,
+                    marginBottom: 30,
+                    marginLeft: -30,
+                    marginRight: -70,
+                  }}
+                >
+                  <Text
+                    style={{
+                      textAlign: "center",
+                      fontWeight: "700",
+                      fontSize: 16,
+                      color: "#fff",
+                    }}
+                  >
+                    Comentar
+                  </Text>
+                </TouchableOpacity>
               </View>
             </View>
+
 
             <View>
               <FlatList

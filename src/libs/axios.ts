@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useAuthStore } from "../store/auth.store";
 
-const baseURL ="https://back-twitter-reactnative-production.up.railway.app";
+const baseURL ="https://back-instagram-reactnative-production.up.railway.app/";
 
 const authApi = axios.create({
   baseURL, 
