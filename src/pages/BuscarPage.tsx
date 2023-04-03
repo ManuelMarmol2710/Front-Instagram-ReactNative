@@ -35,29 +35,28 @@ function BuscarPage({ navigation }: { navigation: any }) {
   const userFind = async () => {
     await axios.get(`/userSearch/${search}`).then((response) => {
       setTaskUser(response.data);
-      console.log(response.data);
     });
   };
 
   const tweetsFind = async () => {
-    await axios.get(`/Postsearch/${search}`).then((response) => {
+    await axios.get(`/tweetSearch/${search}`).then((response) => {
       setTask(response.data);
     });
   };
 
   const filtrartweetsOld = async () => {
-    await axios.get(`/PostFilterForOld/${search}`).then((response) => {
+    await axios.get(`/tweetsFilterForOld/${search}`).then((response) => {
       setTask(response.data);
     });
   };
   const filtrartweetsImage = async () => {
-    await axios.get(`/PostFilterImage/https`).then((response) => {
+    await axios.get(`/tweetsFilterImage/https`).then((response) => {
       setTask(response.data);
     });
   };
 
   const tweetsRelease = async () => {
-    await axios.get(`post/${username}`).then((response) => {
+    await axios.get(`tweet/${username}`).then((response) => {
       setTask(response.data);
       console.log(response.data);
     });
@@ -301,7 +300,7 @@ function BuscarPage({ navigation }: { navigation: any }) {
                         }}
                       >
                         {" "}
-                        {item["post"]} {"\n"}
+                        {item["tweets"]} {"\n"}
                         {"\n"}
                         {"\n"}
                       </Text>
@@ -331,9 +330,9 @@ function BuscarPage({ navigation }: { navigation: any }) {
                       paddingRight: 5,
                     }}
                     onPress={() =>
-                      navigation.navigate("showpost", {
+                      navigation.navigate("showTweets", {
                         owner: item["owner"],
-                        post: item["post"],
+                        tweets: item["tweets"],
                         time: item["time"],
                         _id: item["_id"],
                       })
@@ -381,7 +380,7 @@ function BuscarPage({ navigation }: { navigation: any }) {
                         }}
                       >
                         {" "}
-                        {item["post"]} {"\n"}
+                        {item["tweets"]} {"\n"}
                         {"\n"}
                         {"\n"}
                       </Text>
@@ -411,9 +410,9 @@ function BuscarPage({ navigation }: { navigation: any }) {
                       paddingRight: 5,
                     }}
                     onPress={() =>
-                      navigation.navigate("OwnpostWithImage", {
+                      navigation.navigate("OwnTweetsWithImage", {
                         owner: item["owner"],
-                        post: item["post"],
+                        tweets: item["tweets"],
                         time: item["time"],
                         _id: item["_id"],
                         url: item["url"],
@@ -563,7 +562,7 @@ function BuscarPage({ navigation }: { navigation: any }) {
                         }}
                       >
                         {" "}
-                        {item["post"]} {"\n"}
+                        {item["tweets"]} {"\n"}
                         {"\n"}
                         {"\n"}
                       </Text>

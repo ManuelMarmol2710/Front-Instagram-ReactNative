@@ -70,7 +70,6 @@ function TweetsPage({ route, navigation }: { route: any; navigation: any }) {
     obtenerLike();
     getComments();
     getCountLike();
-   
   }, []);
 
   const OnRefresh = useCallback(async () => {

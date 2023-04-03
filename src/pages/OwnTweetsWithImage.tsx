@@ -18,15 +18,7 @@ import { TextInput, IconButton } from "@react-native-material/core";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 
 function OwnTweetsWithImage({ route, navigation }: { route: any; navigation: any }) {
-  const { owner, post, time, _id, url, url2,
-    url3,
-    url4,
-    url5,
-    url6,
-    url7,
-    url8,
-    url9,
-    url10, } = route.params;
+  const { owner, tweets, time, _id, url } = route.params;
   const username = useAuthStore((state) => state.profile.username.username);
   const [like, setLike] = useState(0);
   const [countLike, setCount] = useState([]);
@@ -99,7 +91,7 @@ function OwnTweetsWithImage({ route, navigation }: { route: any; navigation: any
       {
         text: "OK",
         onPress: async () =>
-          await axios.delete(`deletePost/${_id}`).then((response) => {
+          await axios.delete(`deleteTweets/${_id}`).then((response) => {
             navigation.navigate("Profile");
           }),
       },
@@ -206,131 +198,23 @@ function OwnTweetsWithImage({ route, navigation }: { route: any; navigation: any
               }}
             >
               {" "}
-              {post} {"\n"}
+              {tweets} {"\n"}
               {"\n"}
               {"\n"}
             </Text>
 
             <View style={{ paddingLeft: 45, paddingTop: 5 }}>
-              <Image
-                style={{
-                  width: 300,
-                  height: 300,
-                  borderColor: "#000000",
-                  borderWidth: 3,
-                  borderRadius: 10,
-                }}
-                source={{ uri: `${url}` }}
-              />
-            </View>
-            <View style={{ paddingLeft: 45, paddingTop: 5 }}>
-              <Image
-                style={{
-                  width: 300,
-                  height: 300,
-                  borderColor: "#000000",
-                  borderWidth: 3,
-                  borderRadius: 10,
-                }}
-                source={{ uri: `${url2}` }}
-              />
-            </View>
-            <View style={{ paddingLeft: 45, paddingTop: 5 }}>
-              <Image
-                style={{
-                  width: 300,
-                  height: 300,
-                  borderColor: "#000000",
-                  borderWidth: 3,
-                  borderRadius: 10,
-                }}
-                source={{ uri: `${url3}` }}
-              />
-            </View>
-            <View style={{ paddingLeft: 45, paddingTop: 5 }}>
-              <Image
-                style={{
-                  width: 300,
-                  height: 300,
-                  borderColor: "#000000",
-                  borderWidth: 3,
-                  borderRadius: 10,
-                }}
-                source={{ uri: `${url4}` }}
-              />
-            </View>
-            <View style={{ paddingLeft: 45, paddingTop: 5 }}>
-              <Image
-                style={{
-                  width: 300,
-                  height: 300,
-                  borderColor: "#000000",
-                  borderWidth: 3,
-                  borderRadius: 10,
-                }}
-                source={{ uri: `${url5}` }}
-              />
-            </View>
-            <View style={{ paddingLeft: 45, paddingTop: 5 }}>
-              <Image
-                style={{
-                  width: 300,
-                  height: 300,
-                  borderColor: "#000000",
-                  borderWidth: 3,
-                  borderRadius: 10,
-                }}
-                source={{ uri: `${url6}` }}
-              />
-            </View>
-            <View style={{ paddingLeft: 45, paddingTop: 5 }}>
-              <Image
-                style={{
-                  width: 300,
-                  height: 300,
-                  borderColor: "#000000",
-                  borderWidth: 3,
-                  borderRadius: 10,
-                }}
-                source={{ uri: `${url7}` }}
-              />
-            </View>
-            <View style={{ paddingLeft: 45, paddingTop: 5 }}>
-              <Image
-                style={{
-                  width: 300,
-                  height: 300,
-                  borderColor: "#000000",
-                  borderWidth: 3,
-                  borderRadius: 10,
-                }}
-                source={{ uri: `${url8}` }}
-              />
-            </View>
-            <View style={{ paddingLeft: 45, paddingTop: 5 }}>
-              <Image
-                style={{
-                  width: 300,
-                  height: 300,
-                  borderColor: "#000000",
-                  borderWidth: 3,
-                  borderRadius: 10,
-                }}
-                source={{ uri: `${url9}` }}
-              />
-            </View>
-            <View style={{ paddingLeft: 45, paddingTop: 5 }}>
-              <Image
-                style={{
-                  width: 300,
-                  height: 300,
-                  borderColor: "#000000",
-                  borderWidth: 3,
-                  borderRadius: 10,
-                }}
-                source={{ uri: `${url10}` }}
-              />
-            </View>
+                        <Image
+                          style={{
+                            width: 300,
+                            height: 300,
+                            borderColor: "#000000",
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${url}` }}
+                        />
+                      </View>
 
             <Text
               style={{
@@ -363,7 +247,7 @@ function OwnTweetsWithImage({ route, navigation }: { route: any; navigation: any
               marginBottom: 35,
             }}
           >
-            <View style={{ paddingLeft: 20 }}>
+            <View style={{paddingLeft: 20}}>
               <Pressable
                 style={{ paddingLeft: 55, paddingTop: 20, paddingBottom: 0 }}
                 onPress={onClick}
@@ -379,7 +263,7 @@ function OwnTweetsWithImage({ route, navigation }: { route: any; navigation: any
                     paddingLeft: 0,
                     paddingRight: 0,
                     paddingTop: 10,
-                    marginLeft: -10,
+                    marginLeft:-10,
                     marginBottom: 10,
                     textAlign: "left",
                     fontSize: 14,
@@ -601,7 +485,7 @@ function OwnTweetsWithImage({ route, navigation }: { route: any; navigation: any
                             backgroundColor: "#fff",
                             overflow: "hidden",
                           }}
-
+                          
                         >
                           <Text
                             style={{
