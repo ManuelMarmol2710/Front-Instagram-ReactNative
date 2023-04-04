@@ -48,20 +48,7 @@ foo();
   }, []);
 
   const alertaEliminar = async () => {
-    Alert.alert("Desea eliminar el tweet?", "Su tweet sera eliminado", [
-      {
-        text: "Cancel",
-        onPress: () => console.log("Cancelado"),
-        style: "cancel",
-      },
-      {
-        text: "OK",
-        onPress: async () =>
-          await axios.delete(`deletePost/${_id}`).then((response) => {
-            navigation.navigate("Profile");
-          }),
-      },
-    ]);
+
   };
 
   return (
@@ -80,33 +67,7 @@ foo();
             paddingTop: 15,
           }}
         >
-          <TouchableOpacity
-            onPress={alertaEliminar}
-            style={{
-              backgroundColor: "#d30000",
-              padding: 10,
-              borderRadius: 10,
-              marginBottom: 15,
-              marginLeft: 145,
-              marginRight: -190,
-            }}
-          >
-            <Text
-              style={{
-                textAlign: "center",
-                fontWeight: "700",
-                fontSize: 16,
-                color: "#fff",
-              }}
-            >
-              <Icon
-                style={{ padding: 12, textAlign: "right" }}
-                name="delete"
-                color="#fff"
-                size={25}
-              />
-            </Text>
-          </TouchableOpacity>
+         
         </View>
 
         <ScrollView horizontal={true}>
@@ -125,6 +86,7 @@ foo();
                   }}
                 
                 >
+                  
                        <Text
                     style={{
                       textAlign: "center",
@@ -141,6 +103,8 @@ foo();
                       overflow: "hidden",
                     }}
                   >
+   
+        
                    <Text
                       style={{
                         paddingTop: 20,
@@ -151,6 +115,7 @@ foo();
                         color: "#000000",
                       }}
                     >
+                     
                       @{item["owner"]}
                      </Text>
                      <Text
@@ -200,14 +165,61 @@ foo();
                             borderRadius: 10,
                           }}
                           source={{ uri: `${item["url"]}` }}
-                        />
+               
+               />
+                         </View>
+                 </Text>
+                          
+     <Text>
+     <TouchableOpacity
+            onPress={  () =>{  Alert.alert("Desea eliminar la Storie?", "Su Storie sera eliminado", [
+              {
+                text: "Cancel",
+                onPress: () => console.log("Cancelado"),
+                style: "cancel",
+              },
+              {
+                text: "OK",
+                onPress: async () =>
+                  await axios.delete(`deleteStorie/${item['_id']}`).then((response) => {
+                    navigation.navigate("Profile");
+                  }),
+              },
+            ]);
+          }}
 
-               </View>
-                  
-     
-                  </Text>
-                 
+            style={{
+              backgroundColor: "#d30000",
+              padding: 10,
+              borderRadius: 10,
+              marginBottom: 15,
+              marginLeft: 90,
+              marginRight: -190,
+            }}
+          >
+            <Text
+              style={{
+                textAlign: "center",
+                fontWeight: "700",
+                fontSize: 16,
+                color: "#fff",
+                paddingTop:10,
+              }}
+            >
+              <Icon
+                style={{ padding: 12, textAlign: "right" }}
+                name="delete"
+                color="#fff"
+                size={25}
+              />
+            </Text>
+          </TouchableOpacity> 
+
+     </Text>
+
                 </TouchableOpacity>
+              
+              
               );
             }}
           />

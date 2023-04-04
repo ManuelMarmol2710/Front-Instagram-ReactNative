@@ -25,17 +25,22 @@ function AwayReadStories({ route, navigation }: { route: any; navigation: any })
   const Stories = async () => {
     await axios.get(`mystorie/${owner}`).then((response) => {
       setTask1(response.data);
-   
+   console.log(response.data)
     });
   };
  useEffect(() => {
   const foo = async () => {
-      if (setTask1 === undefined) {
-      alert("Sorry, we need camera roll permissions to make this work!");
-    }  
-     else {
-      Stories();
-     }
+    await axios.get(`mystorie/${owner}`).then((response) => { 
+     if (response.data ==='no') {
+      Alert.alert(`@${owner} no ha subido historias`, "Sera dirigido hacia el Menu Principal", [
+      
+        { text: "OK", onPress: () => navigation.navigate('homepage') },
+      ]);
+      }  
+       else {
+        Stories();
+       }
+    })
 
   };
   foo();
@@ -64,6 +69,8 @@ function AwayReadStories({ route, navigation }: { route: any; navigation: any })
             data={task1}
                  numColumns={40}
             renderItem={({ item }) => {
+           
+    if(item['url']){
               return (
                 <TouchableOpacity
                   style={{
@@ -108,6 +115,7 @@ function AwayReadStories({ route, navigation }: { route: any; navigation: any })
                     >
                       @{item["owner"]}
                      </Text>
+                    
                      <Text
               style={{
                 paddingTop: 0,
@@ -164,6 +172,7 @@ function AwayReadStories({ route, navigation }: { route: any; navigation: any })
                  
                 </TouchableOpacity>
               );
+             }
             }}
           />
           </View>

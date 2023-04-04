@@ -102,7 +102,7 @@ function OwnPostWithImage({ route, navigation }: { route: any; navigation: any }
   }, []);
 
   const alertaEliminar = async () => {
-    Alert.alert("Desea eliminar el tweet?", "Su tweet sera eliminado", [
+    Alert.alert("Desea eliminar el Post?", "Su Post sera eliminado", [
       {
         text: "Cancel",
         onPress: () => console.log("Cancelado"),

@@ -123,7 +123,10 @@ function ProfilePage({ navigation }: { navigation: any }) {
               }}
             >
               <TouchableOpacity
-            onPress={() => navigation.navigate("Readstories")}
+            onPress={() => navigation.navigate("Readstories",{
+              
+
+            })}
           > 
               <Image
                 style={styles.avatar}
