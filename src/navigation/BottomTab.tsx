@@ -1,6 +1,6 @@
 import React from "react";
 import HomePage from "../pages/HomePage";
-import ProfilePage from "../pages/ProfilePage";
+import ProfilePage from "../pagesListas/ProfilePage";
 import BuscarPage from "../pages/BuscarPage";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 

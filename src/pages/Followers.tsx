@@ -54,7 +54,7 @@ function followersPage({ navigation }: { navigation: any }) {
               textAlign: "left",
               fontSize: 30,
               fontWeight: "500",
-              color: "#000000",
+              color: "#fff",
               paddingBottom: 25,
               paddingLeft: 0,
               paddingTop: 5,
@@ -74,7 +74,7 @@ function followersPage({ navigation }: { navigation: any }) {
               return (
                 <TouchableOpacity
                   style={{
-                    backgroundColor: "#afc7d8",
+                    backgroundColor: "#000000",
                     paddingTop: 10,
                     paddingLeft: 10,
                     paddingRight: 10,

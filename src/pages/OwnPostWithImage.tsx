@@ -16,10 +16,22 @@ import axios from "../libs/axios";
 import { useAuthStore } from "../store/auth.store";
 import { TextInput, IconButton } from "@react-native-material/core";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
-import {  Dimensions } from 'react-native';
-const { width, height } = Dimensions.get('screen');
-function OwnPostWithImage({ route, navigation }: { route: any; navigation: any }) {
-  const { owner, post, time, _id, url, url2,
+import { Dimensions } from "react-native";
+const { width, height } = Dimensions.get("screen");
+function OwnPostWithImage({
+  route,
+  navigation,
+}: {
+  route: any;
+  navigation: any;
+}) {
+  const {
+    owner,
+    post,
+    time,
+    _id,
+    url,
+    url2,
     url3,
     url4,
     url5,
@@ -27,7 +39,8 @@ function OwnPostWithImage({ route, navigation }: { route: any; navigation: any }
     url7,
     url8,
     url9,
-    url10, } = route.params;
+    url10,
+  } = route.params;
   const username = useAuthStore((state) => state.profile.username.username);
   const [like, setLike] = useState(0);
   const [countLike, setCount] = useState([]);
@@ -39,11 +52,8 @@ function OwnPostWithImage({ route, navigation }: { route: any; navigation: any }
   const UrlId = async () => {
     return axios.get(`idPost/${_id}`).then((response) => {
       setIdUrl([response.data]);
- 
-    })
-
-
-  }
+    });
+  };
   const commentsPress = async () => {
     setText("");
     return axios.post(`comment/${_id}/${username}`, {
@@ -92,7 +102,6 @@ function OwnPostWithImage({ route, navigation }: { route: any; navigation: any }
     getComments();
     getCountLike();
     UrlId();
-   
   }, []);
 
   const OnRefresh = useCallback(async () => {
@@ -119,14 +128,13 @@ function OwnPostWithImage({ route, navigation }: { route: any; navigation: any }
   };
 
   return (
-
     <SafeAreaView>
       <ScrollView
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={OnRefresh} />
         }
       >
-     <View
+        <View
           style={{
             paddingHorizontal: 210,
             paddingVertical: 1,
@@ -162,1058 +170,1452 @@ function OwnPostWithImage({ route, navigation }: { route: any; navigation: any }
           </TouchableOpacity>
         </View>
         <View style={{ paddingHorizontal: 25, paddingTop: 0 }}>
-        <Text
-                    style={{
-                      textAlign: "center",
-                      fontSize: 16,
-                      fontWeight: "500",
-                      color: "#333",
-                      paddingTop: 15,
-                      paddingBottom: 5,
-                      paddingVertical:20,
-                      paddingHorizontal:20,
-                      borderColor: "black",
-                      borderWidth: 2,
-                      borderRadius: 1,
-                      backgroundColor: "#fff",
-                      overflow: "hidden",
-                    }}
-                  >
-                   <Text
-                      style={{
-                        paddingTop: 20,
-                        paddingLeft: 30,
-                        textAlign: "left",
-                        fontWeight: "700",
-                        fontSize: 16,
-                        color: "#000000",
-                      }}
-                    >
-                      @{owner}
-                    
-                     </Text>
-       
-                     </Text>
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: 16,
+              fontWeight: "500",
+              color: "#333",
+              paddingTop: 15,
+              paddingBottom: 5,
+              paddingVertical: 20,
+              paddingHorizontal: 20,
+              borderColor: "black",
+              borderWidth: 2,
+              borderRadius: 1,
+              backgroundColor: "#fff",
+              overflow: "hidden",
+            }}
+          >
+            <Text
+              style={{
+                paddingTop: 20,
+                paddingLeft: 30,
+                textAlign: "left",
+                fontWeight: "700",
+                fontSize: 16,
+                color: "#000000",
+              }}
+            >
+              @{owner}
+            </Text>
+          </Text>
         </View>
 
-   
-          <View style={{ paddingHorizontal: 12, paddingTop: 0 }}>
+        <View style={{ paddingHorizontal: 12, paddingTop: 0 }}>
           <FlatList
             data={idUrl}
-                 numColumns={40}
+            numColumns={40}
             renderItem={({ item }) => {
-              if (item['url2']=== undefined){
-                return (<ScrollView horizontal={true}>
-                                     
-                  <Text
-               style={{
-                 marginTop: 10,
-                 fontWeight: "500",
-                 color: "#333",
-                 paddingTop: 15,
-                 paddingBottom: 5,
-                 paddingHorizontal: 20,
-                 borderColor: "black",
-                 borderWidth: 2,
-                 borderRadius: 1,
-                 backgroundColor: "#fff",
-            
-               }}
-             >
-             <View style={{  width: width * 0.9, display: "flex", 
-                           flexDirection: "row", flexWrap: "wrap", 
-                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-               <Image
-                style={{
-                 
-                 width: "85%", height: 400,
-                  borderWidth: 90,
-                  borderRadius: 10,
-                  
-                 }}
-                 
-                 source={{ uri: `${item["url"]}` }}
-                 />
-                   </View>
-           
-      
-                </Text>                 
-                </ScrollView>)
-              }
-              if(item['url3']=== undefined) {
-                return (<ScrollView horizontal={true}>
-                                     
-                  <Text
-               style={{
-                 marginTop: 10,
-                 fontWeight: "500",
-                 color: "#333",
-                 paddingTop: 15,
-                 paddingBottom: 5,
-                 paddingHorizontal: 20,
-                 borderColor: "black",
-                 borderWidth: 2,
-                 borderRadius: 1,
-                 backgroundColor: "#fff",
-            
-               }}
-             >
-             <View style={{  width: width * 0.9, display: "flex", 
-                           flexDirection: "row", flexWrap: "wrap", 
-                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-               <Image
-                style={{
-                 
-                 width: "85%", height: 400,
-                  borderWidth: 90,
-                  borderRadius: 10,
-                  
-                 }}
-                 
-                 source={{ uri: `${item["url"]}` }}
-                 />
-                   </View>
-                   <View style={{  width: width * 0.9, display: "flex", 
-                           flexDirection: "row", flexWrap: "wrap", 
-                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-               <Image
-                style={{
-                
-                 width: "85%", height: 400,
-                  borderWidth: 3,
-                  borderRadius: 10,
-                 }}
-                 
-                 source={{ uri: `${item["url2"]}` }}
-                 />
-                 </View>
-                 
-      
-                </Text>                 
-                </ScrollView>)
-              }
-              if(item['url4']=== undefined){
-                return (<ScrollView horizontal={true}>
-                                     
-                  <Text
-               style={{
-                 marginTop: 10,
-                 fontWeight: "500",
-                 color: "#333",
-                 paddingTop: 15,
-                 paddingBottom: 5,
-                 paddingHorizontal: 20,
-                 borderColor: "black",
-                 borderWidth: 2,
-                 borderRadius: 1,
-                 backgroundColor: "#fff",
-            
-               }}
-             >
-             <View style={{  width: width * 0.9, display: "flex", 
-                           flexDirection: "row", flexWrap: "wrap", 
-                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-               <Image
-                style={{
-                 
-                 width: "85%", height: 400,
-                  borderWidth: 90,
-                  borderRadius: 10,
-                  
-                 }}
-                 
-                 source={{ uri: `${item["url"]}` }}
-                 />
-                   </View>
-                   <View style={{  width: width * 0.9, display: "flex", 
-                           flexDirection: "row", flexWrap: "wrap", 
-                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-               <Image
-                style={{
-                
-                 width: "85%", height: 400,
-                  borderWidth: 3,
-                  borderRadius: 10,
-                 }}
-                 
-                 source={{ uri: `${item["url2"]}` }}
-                 />
-                 </View>
-                 <View style={{  width: width * 0.9, display: "flex", 
-                           flexDirection: "row", flexWrap: "wrap", 
-                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                style={{
-                 width: "85%", height: 400,
-                
-                  borderWidth: 3,
-                  borderRadius: 10,
-                 }}
-                 
-                 source={{ uri: `${item["url3"]}` }}
-                 />
-           </View>
-          
-      
-                </Text>                 
-                </ScrollView>)
-              }
-              if(item['url5']=== undefined){
-                return (<ScrollView horizontal={true}>
-                                     
-                  <Text
-               style={{
-                 marginTop: 10,
-                 fontWeight: "500",
-                 color: "#333",
-                 paddingTop: 15,
-                 paddingBottom: 5,
-                 paddingHorizontal: 20,
-                 borderColor: "black",
-                 borderWidth: 2,
-                 borderRadius: 1,
-                 backgroundColor: "#fff",
-            
-               }}
-             >
-             <View style={{  width: width * 0.9, display: "flex", 
-                           flexDirection: "row", flexWrap: "wrap", 
-                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-               <Image
-                style={{
-                 
-                 width: "85%", height: 400,
-                  borderWidth: 90,
-                  borderRadius: 10,
-                  
-                 }}
-                 
-                 source={{ uri: `${item["url"]}` }}
-                 />
-                   </View>
-                   <View style={{  width: width * 0.9, display: "flex", 
-                           flexDirection: "row", flexWrap: "wrap", 
-                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-               <Image
-                style={{
-                
-                 width: "85%", height: 400,
-                  borderWidth: 3,
-                  borderRadius: 10,
-                 }}
-                 
-                 source={{ uri: `${item["url2"]}` }}
-                 />
-                 </View>
-                 <View style={{  width: width * 0.9, display: "flex", 
-                           flexDirection: "row", flexWrap: "wrap", 
-                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                style={{
-                 width: "85%", height: 400,
-                
-                  borderWidth: 3,
-                  borderRadius: 10,
-                 }}
-                 
-                 source={{ uri: `${item["url3"]}` }}
-                 />
-           </View>
-           <View style={{  width: width * 0.9, display: "flex", 
-                           flexDirection: "row", flexWrap: "wrap", 
-                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-           <Image
-                style={{
-                 width: "85%", height: 400,
-               
-                  borderWidth: 3,
-                  borderRadius: 10,
-                 }}
-                 
-                 source={{ uri: `${item["url4"]}` }}
-                 />
-         </View>
-      
-                </Text>                 
-                </ScrollView>)
-              }
-              if(item['url6']=== undefined){
-                return (<ScrollView horizontal={true}>
-                                     
-                  <Text
-               style={{
-                 marginTop: 10,
-                 fontWeight: "500",
-                 color: "#333",
-                 paddingTop: 15,
-                 paddingBottom: 5,
-                 paddingHorizontal: 20,
-                 borderColor: "black",
-                 borderWidth: 2,
-                 borderRadius: 1,
-                 backgroundColor: "#fff",
-            
-               }}
-             >
-             <View style={{  width: width * 0.9, display: "flex", 
-                           flexDirection: "row", flexWrap: "wrap", 
-                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-               <Image
-                style={{
-                 
-                 width: "85%", height: 400,
-                  borderWidth: 90,
-                  borderRadius: 10,
-                  
-                 }}
-                 
-                 source={{ uri: `${item["url"]}` }}
-                 />
-                   </View>
-                   <View style={{  width: width * 0.9, display: "flex", 
-                           flexDirection: "row", flexWrap: "wrap", 
-                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-               <Image
-                style={{
-                
-                 width: "85%", height: 400,
-                  borderWidth: 3,
-                  borderRadius: 10,
-                 }}
-                 
-                 source={{ uri: `${item["url2"]}` }}
-                 />
-                 </View>
-                 <View style={{  width: width * 0.9, display: "flex", 
-                           flexDirection: "row", flexWrap: "wrap", 
-                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                style={{
-                 width: "85%", height: 400,
-                
-                  borderWidth: 3,
-                  borderRadius: 10,
-                 }}
-                 
-                 source={{ uri: `${item["url3"]}` }}
-                 />
-           </View>
-           <View style={{  width: width * 0.9, display: "flex", 
-                           flexDirection: "row", flexWrap: "wrap", 
-                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-           <Image
-                style={{
-                 width: "85%", height: 400,
-               
-                  borderWidth: 3,
-                  borderRadius: 10,
-                 }}
-                 
-                 source={{ uri: `${item["url4"]}` }}
-                 />
-         </View>
-         <View style={{  width: width * 0.9, display: "flex", 
-                           flexDirection: "row", flexWrap: "wrap", 
-                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-           <Image
-                style={{
-                 width: "85%", height: 400,
-               
-                  borderWidth: 3,
-                  borderRadius: 10,
-                 }}
-                 
-                 source={{ uri: `${item["url5"]}` }}
-                 />
-         </View>
-               </Text>                 
-                </ScrollView>)
-              }
-              if(item['url7']=== undefined){
-                return (<ScrollView horizontal={true}>
-                                     
-                  <Text
-               style={{
-                 marginTop: 10,
-                 fontWeight: "500",
-                 color: "#333",
-                 paddingTop: 15,
-                 paddingBottom: 5,
-                 paddingHorizontal: 20,
-                 borderColor: "black",
-                 borderWidth: 2,
-                 borderRadius: 1,
-                 backgroundColor: "#fff",
-            
-               }}
-             >
-             <View style={{  width: width * 0.9, display: "flex", 
-                           flexDirection: "row", flexWrap: "wrap", 
-                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-               <Image
-                style={{
-                 
-                 width: "85%", height: 400,
-                  borderWidth: 90,
-                  borderRadius: 10,
-                  
-                 }}
-                 
-                 source={{ uri: `${item["url"]}` }}
-                 />
-                   </View>
-                   <View style={{  width: width * 0.9, display: "flex", 
-                           flexDirection: "row", flexWrap: "wrap", 
-                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-               <Image
-                style={{
-                
-                 width: "85%", height: 400,
-                  borderWidth: 3,
-                  borderRadius: 10,
-                 }}
-                 
-                 source={{ uri: `${item["url2"]}` }}
-                 />
-                 </View>
-                 <View style={{  width: width * 0.9, display: "flex", 
-                           flexDirection: "row", flexWrap: "wrap", 
-                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                style={{
-                 width: "85%", height: 400,
-                
-                  borderWidth: 3,
-                  borderRadius: 10,
-                 }}
-                 
-                 source={{ uri: `${item["url3"]}` }}
-                 />
-           </View>
-           <View style={{  width: width * 0.9, display: "flex", 
-                           flexDirection: "row", flexWrap: "wrap", 
-                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-           <Image
-                style={{
-                 width: "85%", height: 400,
-               
-                  borderWidth: 3,
-                  borderRadius: 10,
-                 }}
-                 
-                 source={{ uri: `${item["url4"]}` }}
-                 />
-         </View>
-         <View style={{  width: width * 0.9, display: "flex", 
-                           flexDirection: "row", flexWrap: "wrap", 
-                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-           <Image
-                style={{
-                 width: "85%", height: 400,
-               
-                  borderWidth: 3,
-                  borderRadius: 10,
-                 }}
-                 
-                 source={{ uri: `${item["url5"]}` }}
-                 />
-         </View>
-         <View style={{  width: width * 0.9, display: "flex", 
-                           flexDirection: "row", flexWrap: "wrap", 
-                           alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-           <Image
-                style={{
-                 width: "85%", height: 400,
-               
-                  borderWidth: 3,
-                  borderRadius: 10,
-                 }}
-                 
-                 source={{ uri: `${item["url6"]}` }}
-                 />
-         </View>
-                </Text>                 
-                </ScrollView>)
-              }
-        if(item['url8']=== undefined ){
-return(
-  <ScrollView horizontal={true}>
-                                     
-                       <Text
-                    style={{
-                      marginTop: 10,
-                      fontWeight: "500",
-                      color: "#333",
-                      paddingTop: 15,
-                      paddingBottom: 5,
-                      paddingHorizontal: 20,
-                      borderColor: "black",
-                      borderWidth: 2,
-                      borderRadius: 1,
-                      backgroundColor: "#fff",
-                 
-                    }}
-                  >
-                  <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                    <Image
-                     style={{
-                      
-                      width: "85%", height: 400,
-                       borderWidth: 90,
-                       borderRadius: 10,
-                       
+              if (item["url2"] === undefined) {
+                return (
+                  <ScrollView horizontal={true}>
+                    <Text
+                      style={{
+                        marginTop: 10,
+                        fontWeight: "500",
+                        color: "#333",
+                        paddingTop: 15,
+                        paddingBottom: "1%",
+                        paddingHorizontal: 20,
+                        borderColor: "black",
+                        borderWidth: 2,
+                        borderRadius: 1,
+                        backgroundColor: "#fff",
                       }}
-                      
-                      source={{ uri: `${item["url"]}` }}
-                      />
-                        </View>
-                        <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                    <Image
-                     style={{
-                     
-                      width: "85%", height: 400,
-                       borderWidth: 3,
-                       borderRadius: 10,
-                      }}
-                      
-                      source={{ uri: `${item["url2"]}` }}
-                      />
+                    >
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "95%",
+                            height: "95%",
+                            borderWidth: 5,
+                            borderRadius: 10,
+                            paddingTop: 20,
+                            marginTop:"45%",
+                            marginLeft: "5%",
+                            marginBottom:"-25%"
+                          }}
+                          source={{ uri: `${item["url"]}` }}
+                        />
                       </View>
-                      <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                     <Image
-                     style={{
-                      width: "85%", height: 400,
-                     
-                       borderWidth: 3,
-                       borderRadius: 10,
+                    </Text>
+                  </ScrollView>
+                );
+              }
+              if (item["url3"] === undefined) {
+                return (
+                  <ScrollView horizontal={true}>
+                    <Text
+                      style={{
+                        marginTop: 10,
+                        fontWeight: "500",
+                        color: "#333",
+                        paddingTop: 15,
+                        paddingBottom: 5,
+                        paddingHorizontal: 20,
+                        borderColor: "black",
+                        borderWidth: 2,
+                        borderRadius: 1,
+                        backgroundColor: "#fff",
                       }}
-                      
-                      source={{ uri: `${item["url3"]}` }}
-                      />
-                </View>
-                <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
-                      }}
-                      
-                      source={{ uri: `${item["url4"]}` }}
-                      />
-              </View>
-              <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
-                      }}
-                      
-                      source={{ uri: `${item["url5"]}` }}
-                      />
-              </View>
-              <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
-                      }}
-                      
-                      source={{ uri: `${item["url6"]}` }}
-                      />
-              </View>
-              <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
-                      }}
-                      
-                      source={{ uri: `${item["url7"]}` }}
-                      />
-              </View>
-                                </Text>                 
-                     </ScrollView>
-)
-        }
-              if (item['url9']=== undefined) {
-              return(
-                <ScrollView horizontal={true}>
-                                     
-                       <Text
-                    style={{
-                      marginTop: 10,
-                      fontWeight: "500",
-                      color: "#333",
-                      paddingTop: 15,
-                      paddingBottom: 5,
-                      paddingHorizontal: 20,
-                      borderColor: "black",
-                      borderWidth: 2,
-                      borderRadius: 1,
-                      backgroundColor: "#fff",
-                 
-                    }}
-                  >
-                  <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                    <Image
-                     style={{
-                      
-                      width: "85%", height: 400,
-                       borderWidth: 90,
-                       borderRadius: 10,
-                       
-                      }}
-                      
-                      source={{ uri: `${item["url"]}` }}
-                      />
-                        </View>
-                        <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                    <Image
-                     style={{
-                     
-                      width: "85%", height: 400,
-                       borderWidth: 3,
-                       borderRadius: 10,
-                      }}
-                      
-                      source={{ uri: `${item["url2"]}` }}
-                      />
+                    >
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+                            borderWidth: 90,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url"]}` }}
+                        />
                       </View>
-                      <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                     <Image
-                     style={{
-                      width: "85%", height: 400,
-                     
-                       borderWidth: 3,
-                       borderRadius: 10,
-                      }}
-                      
-                      source={{ uri: `${item["url3"]}` }}
-                      />
-                </View>
-                <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
-                      }}
-                      
-                      source={{ uri: `${item["url4"]}` }}
-                      />
-              </View>
-              <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
-                      }}
-                      
-                      source={{ uri: `${item["url5"]}` }}
-                      />
-              </View>
-              <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
-                      }}
-                      
-                      source={{ uri: `${item["url6"]}` }}
-                      />
-              </View>
-              <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
-                      }}
-                      
-                      source={{ uri: `${item["url7"]}` }}
-                      />
-              </View>
-              <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
-                      }}
-                      
-                      source={{ uri: `${item["url8"]}` }}
-                      />
-              </View>
-                     </Text>                 
-                     </ScrollView>
-              )
-            }
-            
-              if(item['url10'] === undefined ){
-return(
-  <ScrollView horizontal={true}>
-                                     
-                       <Text
-                    style={{
-                      marginTop: 10,
-                      fontWeight: "500",
-                      color: "#333",
-                      paddingTop: 15,
-                      paddingBottom: 5,
-                      paddingHorizontal: 20,
-                      borderColor: "black",
-                      borderWidth: 2,
-                      borderRadius: 1,
-                      backgroundColor: "#fff",
-                 
-                    }}
-                  >
-                  <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                    <Image
-                     style={{
-                      
-                      width: "85%", height: 400,
-                       borderWidth: 90,
-                       borderRadius: 10,
-                       
-                      }}
-                      
-                      source={{ uri: `${item["url"]}` }}
-                      />
-                        </View>
-                        <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                    <Image
-                     style={{
-                     
-                      width: "85%", height: 400,
-                       borderWidth: 3,
-                       borderRadius: 10,
-                      }}
-                      
-                      source={{ uri: `${item["url2"]}` }}
-                      />
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url2"]}` }}
+                        />
                       </View>
-                      <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                     <Image
-                     style={{
-                      width: "85%", height: 400,
-                     
-                       borderWidth: 3,
-                       borderRadius: 10,
+                    </Text>
+                  </ScrollView>
+                );
+              }
+              if (item["url4"] === undefined) {
+                return (
+                  <ScrollView horizontal={true}>
+                    <Text
+                      style={{
+                        marginTop: 10,
+                        fontWeight: "500",
+                        color: "#333",
+                        paddingTop: 15,
+                        paddingBottom: 5,
+                        paddingHorizontal: 20,
+                        borderColor: "black",
+                        borderWidth: 2,
+                        borderRadius: 1,
+                        backgroundColor: "#fff",
                       }}
-                      
-                      source={{ uri: `${item["url3"]}` }}
-                      />
-                </View>
-                <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
-                      }}
-                      
-                      source={{ uri: `${item["url4"]}` }}
-                      />
-              </View>
-              <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
-                      }}
-                      
-                      source={{ uri: `${item["url5"]}` }}
-                      />
-              </View>
-              <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
-                      }}
-                      
-                      source={{ uri: `${item["url6"]}` }}
-                      />
-              </View>
-              <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
-                      }}
-                      
-                      source={{ uri: `${item["url7"]}` }}
-                      />
-              </View>
-              <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
-                      }}
-                      
-                      source={{ uri: `${item["url8"]}` }}
-                      />
-              </View>
-              <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
-                      }}
-                      
-                      source={{ uri: `${item["url9"]}` }}
-                      />
-              </View>
-                     </Text>                 
-                     </ScrollView>
-)
-            } else {
-              return (
-                <ScrollView horizontal={true}>
-                                     
-                       <Text
-                    style={{
-                      marginTop: 10,
-                      fontWeight: "500",
-                      color: "#333",
-                      paddingTop: 15,
-                      paddingBottom: 5,
-                      paddingHorizontal: 20,
-                      borderColor: "black",
-                      borderWidth: 2,
-                      borderRadius: 1,
-                      backgroundColor: "#fff",
-                 
-                    }}
-                  >
-                  <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                    <Image
-                     style={{
-                      
-                      width: "85%", height: 400,
-                       borderWidth: 90,
-                       borderRadius: 10,
-                       
-                      }}
-                      
-                      source={{ uri: `${item["url"]}` }}
-                      />
-                        </View>
-                        <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                    <Image
-                     style={{
-                     
-                      width: "85%", height: 400,
-                       borderWidth: 3,
-                       borderRadius: 10,
-                      }}
-                      
-                      source={{ uri: `${item["url2"]}` }}
-                      />
+                    >
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+                            borderWidth: 90,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url"]}` }}
+                        />
                       </View>
-                      <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                     <Image
-                     style={{
-                      width: "85%", height: 400,
-                     
-                       borderWidth: 3,
-                       borderRadius: 10,
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url2"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url3"]}` }}
+                        />
+                      </View>
+                    </Text>
+                  </ScrollView>
+                );
+              }
+              if (item["url5"] === undefined) {
+                return (
+                  <ScrollView horizontal={true}>
+                    <Text
+                      style={{
+                        marginTop: 10,
+                        fontWeight: "500",
+                        color: "#333",
+                        paddingTop: 15,
+                        paddingBottom: 5,
+                        paddingHorizontal: 20,
+                        borderColor: "black",
+                        borderWidth: 2,
+                        borderRadius: 1,
+                        backgroundColor: "#fff",
                       }}
-                      
-                      source={{ uri: `${item["url3"]}` }}
-                      />
-                </View>
-                <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
+                    >
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+                            borderWidth: 90,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url2"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url3"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url4"]}` }}
+                        />
+                      </View>
+                    </Text>
+                  </ScrollView>
+                );
+              }
+              if (item["url6"] === undefined) {
+                return (
+                  <ScrollView horizontal={true}>
+                    <Text
+                      style={{
+                        marginTop: 10,
+                        fontWeight: "500",
+                        color: "#333",
+                        paddingTop: 15,
+                        paddingBottom: 5,
+                        paddingHorizontal: 20,
+                        borderColor: "black",
+                        borderWidth: 2,
+                        borderRadius: 1,
+                        backgroundColor: "#fff",
                       }}
-                      
-                      source={{ uri: `${item["url4"]}` }}
-                      />
-              </View>
-              <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
+                    >
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+                            borderWidth: 90,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url2"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url3"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url4"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url5"]}` }}
+                        />
+                      </View>
+                    </Text>
+                  </ScrollView>
+                );
+              }
+              if (item["url7"] === undefined) {
+                return (
+                  <ScrollView horizontal={true}>
+                    <Text
+                      style={{
+                        marginTop: 10,
+                        fontWeight: "500",
+                        color: "#333",
+                        paddingTop: 15,
+                        paddingBottom: 5,
+                        paddingHorizontal: 20,
+                        borderColor: "black",
+                        borderWidth: 2,
+                        borderRadius: 1,
+                        backgroundColor: "#fff",
                       }}
-                      
-                      source={{ uri: `${item["url5"]}` }}
-                      />
-              </View>
-              <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
+                    >
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+                            borderWidth: 90,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url2"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url3"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url4"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url5"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url6"]}` }}
+                        />
+                      </View>
+                    </Text>
+                  </ScrollView>
+                );
+              }
+              if (item["url8"] === undefined) {
+                return (
+                  <ScrollView horizontal={true}>
+                    <Text
+                      style={{
+                        marginTop: 10,
+                        fontWeight: "500",
+                        color: "#333",
+                        paddingTop: 15,
+                        paddingBottom: 5,
+                        paddingHorizontal: 20,
+                        borderColor: "black",
+                        borderWidth: 2,
+                        borderRadius: 1,
+                        backgroundColor: "#fff",
                       }}
-                      
-                      source={{ uri: `${item["url6"]}` }}
-                      />
-              </View>
-              <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
+                    >
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+                            borderWidth: 90,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url2"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url3"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url4"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url5"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url6"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url7"]}` }}
+                        />
+                      </View>
+                    </Text>
+                  </ScrollView>
+                );
+              }
+              if (item["url9"] === undefined) {
+                return (
+                  <ScrollView horizontal={true}>
+                    <Text
+                      style={{
+                        marginTop: 10,
+                        fontWeight: "500",
+                        color: "#333",
+                        paddingTop: 15,
+                        paddingBottom: 5,
+                        paddingHorizontal: 20,
+                        borderColor: "black",
+                        borderWidth: 2,
+                        borderRadius: 1,
+                        backgroundColor: "#fff",
                       }}
-                      
-                      source={{ uri: `${item["url7"]}` }}
-                      />
-              </View>
-              <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
+                    >
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+                            borderWidth: 90,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url2"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url3"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url4"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url5"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url6"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url7"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url8"]}` }}
+                        />
+                      </View>
+                    </Text>
+                  </ScrollView>
+                );
+              }
+
+              if (item["url10"] === undefined) {
+                return (
+                  <ScrollView horizontal={true}>
+                    <Text
+                      style={{
+                        marginTop: 10,
+                        fontWeight: "500",
+                        color: "#333",
+                        paddingTop: 15,
+                        paddingBottom: 5,
+                        paddingHorizontal: 20,
+                        borderColor: "black",
+                        borderWidth: 2,
+                        borderRadius: 1,
+                        backgroundColor: "#fff",
                       }}
-                      
-                      source={{ uri: `${item["url8"]}` }}
-                      />
-              </View>
-              <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
+                    >
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+                            borderWidth: 90,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url2"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url3"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url4"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url5"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url6"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url7"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url8"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url9"]}` }}
+                        />
+                      </View>
+                    </Text>
+                  </ScrollView>
+                );
+              } else {
+                return (
+                  <ScrollView horizontal={true}>
+                    <Text
+                      style={{
+                        marginTop: 10,
+                        fontWeight: "500",
+                        color: "#333",
+                        paddingTop: 15,
+                        paddingBottom: 5,
+                        paddingHorizontal: 20,
+                        borderColor: "black",
+                        borderWidth: 2,
+                        borderRadius: 1,
+                        backgroundColor: "#fff",
                       }}
-                      
-                      source={{ uri: `${item["url9"]}` }}
-                      />
-              </View>
-              <View style={{  width: width * 0.9, display: "flex", 
-                                flexDirection: "row", flexWrap: "wrap", 
-                                alignContent: "center", alignItems: "center", justifyContent: "center"}}>
-                <Image
-                     style={{
-                      width: "85%", height: 400,
-                    
-                       borderWidth: 3,
-                       borderRadius: 10,
-                      }}
-                      
-                      source={{ uri: `${item["url10"]}` }}
-                      />
-              </View>
-                  
-         
-           
-                     </Text>                 
-                     </ScrollView>
-              );
-                    }
+                    >
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+                            borderWidth: 90,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url2"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url3"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url4"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url5"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url6"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url7"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url8"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url9"]}` }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          width: width * 0.9,
+                          display: "flex",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Image
+                          style={{
+                            width: "85%",
+                            height: 400,
+
+                            borderWidth: 3,
+                            borderRadius: 10,
+                          }}
+                          source={{ uri: `${item["url10"]}` }}
+                        />
+                      </View>
+                    </Text>
+                  </ScrollView>
+                );
+              }
             }}
           />
-          </View>
-          <View
+        </View>
+        <View
           style={{
             paddingHorizontal: 0,
             paddingTop: 0,
@@ -1226,37 +1628,31 @@ return(
             marginBottom: 1,
           }}
         >
-     
           <Text
-                      style={{
-                        paddingTop: -60,
-                        paddingLeft: 2,
-                        textAlign: "center",
-                        fontWeight: "700",
-                        fontSize: 16,
-                        color: "#000000",
-                      }}
-                    >
-                     
-                      {post}
-                    
-                     </Text>
-                     <Text
-              style={{
-                paddingTop: 0,
-                paddingLeft: 20,
-                paddingRight: 20,
-                textAlign: "left",
-                fontSize: 14,
-              
-              }}
-            >
-              {" "}
-              
-              
-              || Subido el: {time}
-            </Text>
-                       </View>
+            style={{
+              paddingTop: -60,
+              paddingLeft: 2,
+              textAlign: "center",
+              fontWeight: "700",
+              fontSize: 16,
+              color: "#000000",
+            }}
+          >
+            {post}
+          </Text>
+          <Text
+            style={{
+              paddingTop: 0,
+              paddingLeft: 20,
+              paddingRight: 20,
+              textAlign: "left",
+              fontSize: 14,
+            }}
+          >
+            {" "}
+            || Subido el: {time}
+          </Text>
+        </View>
 
         <View
           style={{
@@ -1290,7 +1686,7 @@ return(
                   marginBottom: 10,
                   textAlign: "left",
                   fontSize: 14,
-                  fontWeight: "700"
+                  fontWeight: "700",
                 }}
                 onPress={() =>
                   navigation.navigate("showLikes", {
@@ -1372,7 +1768,6 @@ return(
                 </TouchableOpacity>
               </View>
             </View>
-
 
             <View>
               <FlatList
@@ -1480,7 +1875,7 @@ return(
                           paddingTop: 10,
                           paddingLeft: 10,
                           paddingRight: 10,
-                          paddingBottom: 10
+                          paddingBottom: 10,
                         }}
                         onPress={() =>
                           navigation.navigate("awaycomment", {
@@ -1508,7 +1903,6 @@ return(
                             backgroundColor: "#fff",
                             overflow: "hidden",
                           }}
-
                         >
                           <Text
                             style={{
