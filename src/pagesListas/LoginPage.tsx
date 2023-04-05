@@ -8,30 +8,35 @@ import {
   Alert,
   TouchableOpacity,
   ImageBackground,
+  Image,
+  Linking
 } from "react-native";
-
-import { TextInput, IconButton } from "@react-native-material/core";
+import styles from './Login.styles';
+import Container from '../components/Container/Container';
+import Content from '../components/Content/Content';
+import { IconButton } from "@react-native-material/core";
 import { loginRequest, PerfilRequest } from "../api/auth";
 import { useAuthStore } from "../store/auth.store";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
-import { LinearGradient } from "expo-linear-gradient";
+import {TextInput} from 'react-native-paper';
 
 function LoginPage({ navigation }: { navigation: any }) {
   const setToken = useAuthStore((state) => state.setToken);
-  const [seePassword, setseePassword] = useState(true);
   const setProfile = useAuthStore((state) => state.setProfile);
-  const [username, setText] = useState("");
-  const [password, setText1] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [passwordVisible, setPasswordVisible] = useState(true);
+  const [name, setName] = useState("");
 
   const loginPress = async () => {
     try {
-      const respuesta = await loginRequest(username, password);
+      const respuesta = await loginRequest(name, password);
       setToken(respuesta.data.token);
       const resProfile = await PerfilRequest();
       setProfile(resProfile.data.profile);
       navigation.navigate("homepage");
-      setText("");
-      setText1("");
+      setName("");
+      setPassword("");
     } catch (error) {
       Alert.alert("Login Invalido", "Usuario o contraseña", [
         {
@@ -55,101 +60,84 @@ function LoginPage({ navigation }: { navigation: any }) {
     navigation.navigate("sendEmail");
   };
   return (
-    <SafeAreaView>
-      <View
-        style={{
-          backgroundColor: "#fff",
-          borderRadius: 90,
-          borderWidth: 4,
-          margin: 10,
-          marginTop: 50
-        }}
-      >
-        <View style={{ paddingHorizontal: 25, paddingTop: 100 }}>
-            <Text
-              style={{
-                textAlign: "center",
-                fontSize: 30,
-                fontWeight: "500",
-                color: "#333",
-                paddingBottom: 25,
-              }}
-            >
-              Iniciar sesión
-            </Text>
-          
-          <View>
-            <TextInput
-              color="#066cb4"
-              label="Usuario"
-              placeholder="Usuario"
-              onChangeText={setText}
-              value={username}
-              style={{ margin: 16 }}
+    <Container insets={{top: true, bottom: true}}>
+      <Content>
+        <View style={{flex: 1}}>
+          <View style={styles.topContainer}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Text style={{color: 'white', opacity: 0.6, fontSize: 14}}>
+              </Text>
+            </View>
+            <Image
+              style={styles.logo}
+              source={require('../assets/images/omapp_logo.png')}
             />
           </View>
 
-          <TextInput
-            color="#066cb4"
-            label="Password"
-            secureTextEntry={seePassword}
-            trailing={(props) => (
-              <IconButton
-                onPress={() => setseePassword(!seePassword)}
-                icon={(props) => <Icon name="eye" {...props} />}
-                {...props}
-              />
-            )}
-            placeholder="Password"
-            onChangeText={setText1}
-            value={password}
-            style={{ margin: 16 }}
-          />
-        </View>
+          <View style={styles.keyboardView}>
+            <TextInput
+              theme={{colors: {text: 'white'}}}
+              placeholder="Username"
+              onChangeText={setName}
+              value={name}
+              placeholderTextColor="white"
+              selectionColor="white"
+              style={styles.textInput}
+              activeOutlineColor="white"
+              activeUnderlineColor="white"
+            />
 
-        <View style={{ paddingHorizontal: 70, paddingVertical: 5 }}>
-          <TouchableOpacity
-            onPress={loginPress}
-            style={{
-              backgroundColor: "#000000",
-              padding: 20,
-              borderRadius: 10,
-              marginBottom: 30,
-            }}
-          >
-            <Text
-              style={{
-                textAlign: "center",
-                fontWeight: "700",
-                fontSize: 16,
-                color: "#fff",
-              }}
-            >
-              Login
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+            <TextInput
+              theme={{colors: {text: 'white'}}}
+              placeholder="Password"
+              placeholderTextColor="white"
+              onChangeText={setPassword}
+              value={password}
+              style={styles.textInput}
+              selectionColor="white"
+              secureTextEntry={passwordVisible}
+              activeUnderlineColor="white"
+              activeOutlineColor="white"
+              right={
+                <TextInput.Icon
+                  color={'white'}
+                  name={passwordVisible ? 'eye-off' : 'eye'}
+                  onPress={() => setPasswordVisible(!passwordVisible)}
+                />
+              }
+            />
+            <TouchableOpacity
+              onPress={loginPress}
+              style={styles.login}>
+              <Text style={styles.loginText}>Iniciar Sesion</Text>
+            </TouchableOpacity>
 
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "center",
-          marginBottom: 30,
-          marginTop: 20
-        }}
-      >
-        <Text>No tienes una cuenta?</Text>
-        <TouchableOpacity onPress={register}>
-          <Text style={{ color: "#000000", fontWeight: "700" }}>
-            {" "}
-            Regístrate
-          </Text>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
+            <View style={{alignItems: 'center', padding: 10}}>
+              <View style={styles.text}>
+                <Text style={{fontSize: 12, color: 'grey'}}>
+                  No tienes una cuenta?{' '}
+                </Text>
+                <TouchableOpacity onPress={register}>
+                <Text style={styles.help}> Registrate</Text>
+                </TouchableOpacity>
+                
+              </View>
+
+              <View style={styles.seperatorStyle}>
+                <View style={styles.seperator} />
+                <Text style={{color: 'grey'}}> </Text>
+                <View style={styles.seperator} />
+              </View>
+
+            </View>
+          </View>
+
+          <View style={styles.bottomContainer}>
+          </View>
+        </View>
+      </Content>
+    </Container>
   );
 }
-const styles = StyleSheet.create({});
 
 export default LoginPage;

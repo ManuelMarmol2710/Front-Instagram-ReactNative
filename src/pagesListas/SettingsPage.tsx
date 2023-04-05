@@ -11,6 +11,8 @@ import {
 } from "react-native";
 import { useAuthStore } from "../store/auth.store";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
+import Container from "../components/Container/Container";
+import Content from "../components/Content/Content";
 
 function SettingsPage({ navigation }: { navigation: any }) {
   
@@ -27,7 +29,8 @@ function SettingsPage({ navigation }: { navigation: any }) {
   };
 
   return (
-    <SafeAreaView>
+    <Container>
+      <Content>
       <View
         style={{
           paddingHorizontal: 25,
@@ -140,7 +143,8 @@ function SettingsPage({ navigation }: { navigation: any }) {
           </TouchableOpacity>
         </View>
       </View>
-    </SafeAreaView>
+      </Content>
+    </Container>
   );
 }
 export default SettingsPage;
