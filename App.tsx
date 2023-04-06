@@ -56,16 +56,16 @@ function Home() {
           height: 90,
           paddingHorizontal: 5,
           paddingTop: 10,
-          backgroundColor: "#afc7d8",
+          backgroundColor: "#000000",
           position: "absolute",
           borderTopWidth: 2,
-          borderTopColor: "#000000",
+          borderTopColor: "#fff",
           paddingBottom: 35,
         },
-        tabBarActiveTintColor: "#000000",
+        tabBarActiveTintColor: "#afc7d8",
         tabBarInactiveTintColor: "#fff",
       }}
-      sceneContainerStyle={{ backgroundColor: "#afc7d8" }}
+      sceneContainerStyle={{ backgroundColor: "#000000" }}
     >
       <Tab.Screen
         name="Home"
@@ -129,7 +129,7 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
-            cardStyle: { backgroundColor: "#afc7d8" }
+            cardStyle: { backgroundColor: "#000000" }
           }}
         >
           <Stack.Screen
@@ -143,7 +143,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
@@ -152,8 +152,9 @@ export default function App() {
             component={RegisterPage}
             options={{
               title: "",
+              headerShown: false,
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
@@ -173,7 +174,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
@@ -183,7 +184,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
@@ -193,7 +194,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
@@ -203,7 +204,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
@@ -213,7 +214,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
@@ -223,7 +224,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
@@ -233,7 +234,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
@@ -244,7 +245,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
@@ -254,7 +255,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
@@ -264,7 +265,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
@@ -275,7 +276,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
@@ -285,7 +286,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
@@ -295,7 +296,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
@@ -306,7 +307,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
@@ -316,7 +317,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
@@ -326,7 +327,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
@@ -336,7 +337,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
@@ -346,7 +347,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
@@ -356,7 +357,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
@@ -366,7 +367,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />    
@@ -376,7 +377,7 @@ export default function App() {
           options={{
             title: "",
             headerStyle: {
-              backgroundColor: "#afc7d8",
+              backgroundColor: "#000000",
             },
           }}
         />    
@@ -387,7 +388,7 @@ export default function App() {
           options={{
             title: "",
             headerStyle: {
-              backgroundColor: "#afc7d8",
+              backgroundColor: "#000000",
             },
           }}
         /> 
@@ -397,7 +398,7 @@ export default function App() {
           options={{
             title: "",
             headerStyle: {
-              backgroundColor: "#afc7d8",
+              backgroundColor: "#000000",
             },
           }}
         />
@@ -407,7 +408,7 @@ export default function App() {
           options={{
             title: "",
             headerStyle: {
-              backgroundColor: "#afc7d8",
+              backgroundColor: "#000000",
             },
           }}
         />

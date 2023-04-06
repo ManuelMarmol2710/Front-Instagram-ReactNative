@@ -134,7 +134,7 @@ function BuscarPage({ navigation }: { navigation: any }) {
                     <TouchableOpacity
                       onPress={() => navigation.navigate("Profile", {})}
                       style={{
-                        backgroundColor: "#afc7d8",
+                        backgroundColor: "#000000",
                         paddingTop: 10,
                         paddingLeft: 10,
                         paddingRight: 160,
@@ -177,7 +177,7 @@ function BuscarPage({ navigation }: { navigation: any }) {
                   return (
                     <TouchableOpacity
                       style={{
-                        backgroundColor: "#afc7d8",
+                        backgroundColor: "#000000",
                         paddingTop: 10,
                         paddingLeft: 10,
                         paddingRight: 160,
@@ -238,7 +238,7 @@ function BuscarPage({ navigation }: { navigation: any }) {
                 return (
                   <TouchableOpacity
                     style={{
-                      backgroundColor: "#afc7d8",
+                      backgroundColor: "#000000",
                       paddingTop: 10,
                       paddingLeft: 5,
                       paddingRight: 5,
@@ -325,7 +325,7 @@ function BuscarPage({ navigation }: { navigation: any }) {
                 return (
                   <TouchableOpacity
                     style={{
-                      backgroundColor: "#afc7d8",
+                      backgroundColor: "#000000",
                       paddingTop: 10,
                       paddingLeft: 5,
                       paddingRight: 5,
@@ -405,7 +405,7 @@ function BuscarPage({ navigation }: { navigation: any }) {
                 return (
                   <TouchableOpacity
                     style={{
-                      backgroundColor: "#afc7d8",
+                      backgroundColor: "#000000",
                       paddingTop: 10,
                       paddingLeft: 5,
                       paddingRight: 5,
@@ -506,7 +506,7 @@ function BuscarPage({ navigation }: { navigation: any }) {
                 return (
                   <TouchableOpacity
                     style={{
-                      backgroundColor: "#afc7d8",
+                      backgroundColor: "#000000",
                       paddingTop: 10,
                       paddingLeft: 5,
                       paddingRight: 5,
