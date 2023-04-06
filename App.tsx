@@ -11,7 +11,7 @@ import SiguiendoPage from "./src/pages/Siguiendo";
 import SettingsPage from "./src/pagesListas/SettingsPage";
 
 import PostWithImage from "./src/pages/PostWithImage";
-
+import BuscarPostAndUser from "./src/pages/BuscarPost&Users";
 import OwnPostWithImage from "./src/pages/OwnPostWithImage";
 import NewPostPage from "./src/pages/NewPost";
 import OwnComments from "./src/pages/OwnComments";
@@ -297,6 +297,16 @@ export default function App() {
               title: "",
               headerStyle: {
                 backgroundColor: "#000000",
+              },
+            }}
+          />
+          <Stack.Screen
+            name="buscarPost&User"
+            component={BuscarPostAndUser}
+            options={{
+              title: "",
+              headerStyle: {
+                backgroundColor: "#afc7d8",
               },
             }}
           />
