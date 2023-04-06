@@ -9,10 +9,14 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
+import styles from "./Login.styles";
+import Container from "../components/Container/Container";
+import Content from "../components/Content/Content";
 import { RegisterRequest, PerfilRequest } from "../api/auth";
 import { useAuthStore } from "../store/auth.store";
-import { TextInput, IconButton } from "@react-native-material/core";
+import { IconButton } from "@react-native-material/core";
 import { LinearGradient } from "expo-linear-gradient";
+import { TextInput } from "react-native-paper";
 
 function RegisterPage({ navigation }: { navigation: any }) {
   const [email, setText] = useState("");
@@ -34,7 +38,7 @@ function RegisterPage({ navigation }: { navigation: any }) {
       last_Name,
       username,
       biography,
-      navigation,
+      navigation
     );
     setToken(respuesta.data.token);
   };
@@ -51,109 +55,114 @@ function RegisterPage({ navigation }: { navigation: any }) {
     }
   };
 
-  return (
-    <SafeAreaView>
-        <View
-          style={{
-            backgroundColor: "#fff",
-            borderRadius: 90,
-            borderWidth: 4,
-            margin: 10,
-          }}
-        >
-          <View style={{ paddingHorizontal: 25, paddingTop: 40 }}>
-            <Text
-              style={{
-                textAlign: "center",
-                fontSize: 30,
-                fontWeight: "500",
-                color: "#333",
-                paddingBottom: 25,
-              }}
-            >
-              Registro de usuario
-            </Text>
+  const login = async () => {
+    navigation.navigate("login");
+  };
 
+  return (
+    <Container insets={{ top: true, bottom: true }}>
+      <Content>
+        <View style={{ flex: 1, marginTop:"35%" }}>
+
+          <View style={styles.keyboardView}>
             <TextInput
-              color="#066cb4"
-              label="Nombre"
+              theme={{ colors: { text: "white" } }}
               placeholder="Nombre"
               onChangeText={setText2}
               value={name}
+              placeholderTextColor="white"
+              selectionColor="white"
+              style={styles.textInput}
+              activeOutlineColor="white"
+              activeUnderlineColor="white"
             />
 
             <TextInput
-              color="#066cb4"
-              label="Apellido"
+              theme={{ colors: { text: "white" } }}
               placeholder="Apellido"
               onChangeText={setText3}
               value={last_Name}
+              placeholderTextColor="white"
+              selectionColor="white"
+              style={styles.textInput}
+              activeOutlineColor="white"
+              activeUnderlineColor="white"
             />
 
             <TextInput
-              color="#066cb4"
-              label="Biografia"
-              placeholder="Hola mi usuario es..."
+              theme={{ colors: { text: "white" } }}
+              placeholder="Biografia"
               onChangeText={(text) => setText4(text)}
               value={biography}
-              maxLength={100}
+              placeholderTextColor="white"
+              selectionColor="white"
+              style={styles.textInput}
+              activeOutlineColor="white"
+              activeUnderlineColor="white"
             />
 
             <TextInput
-              color="#066cb4"
-              label="Email"
+              theme={{ colors: { text: "white" } }}
               placeholder="ejemplo@test.com"
               onChangeText={(text) => handleCheckEmail(text)}
               value={email}
+              placeholderTextColor="white"
+              selectionColor="white"
+              style={styles.textInput}
+              activeOutlineColor="white"
+              activeUnderlineColor="white"
             />
+
             <TextInput
-              color="#066cb4"
-              label="Usuario"
-              placeholder="Nombre de Usuario"
+              theme={{ colors: { text: "white" } }}
+              placeholder="Usuario"
               onChangeText={setText5}
               value={username}
+              placeholderTextColor="white"
+              selectionColor="white"
+              style={styles.textInput}
+              activeOutlineColor="white"
+              activeUnderlineColor="white"
             />
 
             <TextInput
-              color="#066cb4"
-              label="Contraseña"
+              theme={{ colors: { text: "white" } }}
               placeholder="Contraseña"
+              placeholderTextColor="white"
               onChangeText={(text) => setText1(text)}
               value={password}
+              style={styles.textInput}
+              selectionColor="white"
+              activeUnderlineColor="white"
+              activeOutlineColor="white"
             />
+
+            <TouchableOpacity onPress={SignupPress} style={styles.login}>
+              <Text style={styles.loginText}>Registrarse</Text>
+            </TouchableOpacity>
+
+            <View style={{ alignItems: "center", padding: 10 }}>
+              <View style={styles.text}>
+                <Text style={{ fontSize: 12, color: "grey" }}>
+                  Ya tienes una cuenta?{" "}
+                </Text>
+                <TouchableOpacity onPress={login}>
+                  <Text style={styles.help}> Inicia Sesion</Text>
+                </TouchableOpacity>
+              </View>
+
+              <View style={styles.seperatorStyle}>
+                <View style={styles.seperator} />
+                <Text style={{ color: "grey" }}> </Text>
+                <View style={styles.seperator} />
+              </View>
+            </View>
           </View>
 
-          <View
-            style={{
-              paddingHorizontal: 70,
-              paddingVertical: 5,
-              paddingTop: 25,
-            }}
-          >
-            <TouchableOpacity
-              disabled={checkValidEmail}
-              onPress={SignupPress}
-              style={{
-                backgroundColor: "#000000",
-                padding: 20,
-                borderRadius: 10,
-                marginBottom: 30,
-              }}
-            >
-              <Text
-                style={{
-                  textAlign: "center",
-                  fontWeight: "700",
-                  fontSize: 16,
-                  color: "#fff",
-                }}
-              >
-                Registrar
-              </Text>
-            </TouchableOpacity>
-          </View>
+          <View style={styles.bottomContainer}></View>
         </View>
-    </SafeAreaView>
+      </Content>
+    </Container>
   );
 }
 
