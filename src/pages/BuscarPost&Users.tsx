@@ -13,7 +13,7 @@ import {
   LogBox,
   YellowBox,
   TouchableOpacity,
-  Image, Pressable,
+  Image,
 } from "react-native";
 import { useAuthStore } from "../store/auth.store";
 import { SelectList } from "react-native-dropdown-select-list";
@@ -24,11 +24,10 @@ import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 LogBox.ignoreAllLogs();
 YellowBox.ignoreWarnings(["VirtualizedLists should never be nested"]);
 
-function BuscarPage({ navigation }: { navigation: any }) {
+function BuscarPostAndUser({ navigation }: { navigation: any }) {
   const [search, setSearch] = React.useState("");
   const [selected, setSelected] = React.useState("");
   const [task, setTask] = useState([]);
-  const [taskSelect, setTaskSelect] = useState([]);
   const [taskUser, setTaskUser] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
   const username = useAuthStore((state) => state.profile.username.username);
@@ -40,31 +39,45 @@ function BuscarPage({ navigation }: { navigation: any }) {
     });
   };
 
-  const postFind = async () => {
+  const tweetsFind = async () => {
     await axios.get(`/Postsearch/${search}`).then((response) => {
       setTask(response.data);
     });
   };
 
-  const selectPostFind = async () => {
-    await axios.get(`PostFilterImage/http`).then((response) => {
-      setTaskSelect(response.data);
+  const filtrartweetsOld = async () => {
+    await axios.get(`/PostFilterForOld/${search}`).then((response) => {
+      setTask(response.data);
     });
   };
- const data = [
-    { key: "1", value: "Usuario" },
-    { key: "2", value: "Post" },
-  
+  const filtrartweetsImage = async () => {
+    await axios.get(`/PostFilterImage/https`).then((response) => {
+      setTask(response.data);
+    });
+  };
+
+  const tweetsRelease = async () => {
+    await axios.get(`post/${username}`).then((response) => {
+      setTask(response.data);
+      console.log(response.data);
+    });
+  };
+
+  const data = [
+    { key: "1", value: "Mas antiguo" },
+    { key: "2", value: "Mas recientes" },
+    { key: "3", value: "Imagenes" },
   ];
 
   useEffect(() => {
-    selectPostFind();
-    
-  });
+    userFind();
+    tweetsFind();
+
+  }, [search]);
 
   const OnRefresh = useCallback(async () => {
     setRefreshing(true);
- selectPostFind(), setRefreshing(false);
+    await tweetsRelease(), setRefreshing(false);
   }, []);
 
   return (
@@ -74,7 +87,7 @@ function BuscarPage({ navigation }: { navigation: any }) {
           <RefreshControl refreshing={refreshing} onRefresh={OnRefresh} />
         }
       >
-  <TextInput
+        <TextInput
           color="#066cb4"
           trailing={(props) => (
             <IconButton
@@ -82,140 +95,36 @@ function BuscarPage({ navigation }: { navigation: any }) {
               {...props}
             />
           )}
-         style={{ margin: 10, paddingTop: 45 }}
+          onChangeText={(text) => setSearch(text)}
+          value={search}
+          style={{ margin: 10, paddingTop: 45 }}
           numberOfLines={2}
           maxLength={40}
-          onFocus={()=> navigation.navigate('buscarPost&User')
-          }
+          editable
         />
 
-
-        <View style={{ margin: 20, paddingTop: 0, marginLeft:15}}>
-          <FlatList
-            data={taskSelect}
-                     numColumns={2}
-            renderItem={({ item }) => {
-             if (username === item["owner"] && item["url"]) {
-                return (
-                  <TouchableOpacity
-                    style={{
-                      backgroundColor: "#afc7d8",
-                      paddingTop: 10,
-                      paddingLeft: 5,
-                      paddingRight: 5,
-                    }}
-                    onPress={() =>
-                      navigation.navigate("OwnPostWithImage", {
-                        owner: item["owner"],
-                        post: item["post"],
-                        time: item["time"],
-                        _id: item["_id"],
-                        url: item["url"],
-                      })
-                    }
-                  >
-                    <Text
-                      style={{
-                        textAlign: "left",
-                        fontSize: 16,
-                        fontWeight: "500",
-                        color: "#333",
-                        paddingTop: 25,
-                        paddingLeft: 30,
-                        paddingRight: 30,
-                        paddingBottom: 5,
-                        paddingHorizontal: 10,
-                        borderColor: "black",
-                        borderWidth: 3,
-                        borderRadius: 15,
-                        backgroundColor: "#fff",
-                        overflow: "hidden",
-                      }}
-                    >
-                      
-
-                      
-
-                      <View style={{ paddingLeft: 1, paddingTop: 5 }}>
-                        <Image
-                          style={{
-                            width: 100,
-                            height: 100,
-                            borderColor: "#000000",
-                            borderWidth: 3,
-                            borderRadius: 10,
-                          }}
-                          source={{ uri: `${item["url"]}` }}
-                        />
-                      </View>
-
-                   
-                    </Text>
-                  </TouchableOpacity>
-                );
-              } else if (username !== item["owner"] && item["url"]) {
-                return (
-                  <TouchableOpacity
-                    style={{
-                      backgroundColor: "#afc7d8",
-                      paddingTop: 10,
-                      paddingLeft: 5,
-                      paddingRight: 5,
-                    }}
-                    onPress={() =>
-                      navigation.navigate("PostWithImage", {
-                        owner: item["owner"],
-                      post: item["post"],
-                        time: item["time"],
-                        _id: item["_id"],
-                        url: item["url"],
-                      })
-                    }
-                  >
-                    <Text
-                      style={{
-                        textAlign: "left",
-                        fontSize: 16,
-                        fontWeight: "500",
-                        color: "#333",
-                        paddingTop: 25,
-                      paddingLeft: 30,
-                        paddingRight: 30,
-                        paddingBottom: 5,
-                        paddingHorizontal: 10,
-                        borderColor: "black",
-                        borderWidth: 3,
-                        borderRadius: 15,
-                        backgroundColor: "#fff",
-                        overflow: "hidden",
-                      }}
-                    >
-                     
-
-                    
-
-                      <View style={{  }}>
-                        <Image
-                          style={{
-                            width: 100,
-                            height: 100,
-                            borderColor: "#000000",
-                            borderWidth: 3,
-                            borderRadius: 10,
-                          }}
-                          source={{ uri: `${item["url"]}` }}
-                        />
-                      </View>
-
-                      
-                    </Text>
-                  </TouchableOpacity>
-                );
+        <View style={{ margin: 5, paddingTop: 5, paddingHorizontal:100, marginLeft: 150, marginRight:-85 }}>
+          <SelectList
+            setSelected={(selected: React.SetStateAction<string>) =>
+              setSelected(selected)
+            }
+            data={data}
+            save="value"
+            onSelect={() => {
+              if (selected === "Mas antiguo") {
+                filtrartweetsOld();
+              } else if (selected === "Mas recientes") {
+                tweetsFind();
+              } else if (selected === "Imagenes") {
+                filtrartweetsImage();
               }
+              
             }}
+            searchPlaceholder="Filtrar por"
           />
         </View>
 
+        
         <View style={{ margin: 20, paddingTop: 5 }}>
           <View>
             <FlatList
@@ -692,6 +601,7 @@ function BuscarPage({ navigation }: { navigation: any }) {
             }}
           />
         </View>
+    
       </ScrollView>
     </SafeAreaView>
   );
@@ -706,4 +616,4 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
 });
-export default BuscarPage;
+export default BuscarPostAndUser;
