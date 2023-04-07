@@ -848,7 +848,7 @@ if (URL.length == 10){
                     color: "#fff",
                   }}
                 >
-                  Tweetear
+                  Post
                 </Text>
               </TouchableOpacity>
             </View>

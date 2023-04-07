@@ -103,26 +103,6 @@ function BuscarPostAndUser({ navigation }: { navigation: any }) {
           editable
         />
 
-        <View style={{ margin: 5, paddingTop: 5, paddingHorizontal:100, marginLeft: 150, marginRight:-85 }}>
-          <SelectList
-            setSelected={(selected: React.SetStateAction<string>) =>
-              setSelected(selected)
-            }
-            data={data}
-            save="value"
-            onSelect={() => {
-              if (selected === "Mas antiguo") {
-                filtrartweetsOld();
-              } else if (selected === "Mas recientes") {
-                tweetsFind();
-              } else if (selected === "Imagenes") {
-                filtrartweetsImage();
-              }
-              
-            }}
-            searchPlaceholder="Filtrar por"
-          />
-        </View>
 
         
         <View style={{ margin: 20, paddingTop: 5 }}>

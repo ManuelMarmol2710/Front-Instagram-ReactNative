@@ -77,6 +77,7 @@ function ProfilePage({ navigation }: { navigation: any }) {
     });
   };
   useEffect(() => {
+   OnRefresh();
     obtenerLike();
     tweetsCount();
     followingCount();

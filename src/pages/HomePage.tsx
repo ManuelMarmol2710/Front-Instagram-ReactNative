@@ -207,7 +207,7 @@ function HomePage({ navigation }: { navigation: any }) {
                         paddingRight: 10,
                       }}
                       onPress={() =>
-                        navigation.navigate("showTweets", {
+                        navigation.navigate("PostWithImage", {
                           owner: item["owner"],
                           post: item["post"],
                           time: item["time"],
@@ -287,7 +287,7 @@ function HomePage({ navigation }: { navigation: any }) {
                         paddingRight: 10,
                       }}
                       onPress={() =>
-                        navigation.navigate("TweetsWithImage", {
+                        navigation.navigate("PostWithImage", {
                           owner: item["owner"],
                           post: item["post"],
                           time: item["time"],
