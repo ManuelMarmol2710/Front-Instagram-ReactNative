@@ -9,7 +9,7 @@ import BuscarPage from "./src/pages/BuscarPage";
 import AwayProfile from "./src/pages/AwayProfile";
 import SiguiendoPage from "./src/pages/Siguiendo";
 import SettingsPage from "./src/pagesListas/SettingsPage";
-
+import Comments from "./src/pages/Comments";
 import PostWithImage from "./src/pages/PostWithImage";
 import BuscarPostAndUser from "./src/pages/BuscarPost&Users";
 import OwnPostWithImage from "./src/pages/OwnPostWithImage";
@@ -239,6 +239,17 @@ export default function App() {
             }}
           />
          
+         <Stack.Screen
+            name="Comment"
+            component={Comments}
+            options={{
+              title: "",
+              headerStyle: {
+                backgroundColor: "#000000",
+              },
+            }}
+          />
+
           <Stack.Screen
             name="PostWithImage"
             component={PostWithImage}
@@ -306,7 +317,7 @@ export default function App() {
             options={{
               title: "",
               headerStyle: {
-                backgroundColor: "#afc7d8",
+                backgroundColor: "#000000",
               },
             }}
           />
