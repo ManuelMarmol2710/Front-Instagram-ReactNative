@@ -6,7 +6,7 @@ export const Container = styled.View`
   padding-left: 20px;
   padding-right: 20px;
   align-items: center;
-  background-color: #ffffff;
+  background-color: #000000;
 `;
 
 export const Card = styled.TouchableOpacity`
@@ -50,6 +50,7 @@ export const UserName = styled.Text`
   font-size: 14px;
   font-weight: bold;
   font-family: 'Lato-Regular';
+  color: #ffffff
 `;
 
 export const PostTime = styled.Text`

@@ -1572,7 +1572,7 @@ function OwnPostWithImage({
               <MaterialCommunityIcons
                 name={like ? "heart" : "heart-outline"}
                 size={32}
-                color={like ? "red" : "black"}
+                color={like ? "red" : "white"}
               />
               </TouchableOpacity>
 
@@ -1605,13 +1605,6 @@ function OwnPostWithImage({
             <Text style={styles.postName}>{owner}</Text>
             <Text style={{ color: "white", marginTop: 2 }}> {post}</Text>
           </View>
-
-          <Text style={styles.comment} onPress={() =>
-                          navigation.navigate("Comment", {
-                            _id:_id,
-                          })
-                        }
-                      >Comentar</Text>
 
           <Text style={styles.time}>{time}</Text>
           
