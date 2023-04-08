@@ -43,6 +43,7 @@
     "react-native": "0.70.5",
     "react-native-dropdown-select-list": "^2.0.4",
     "react-native-gesture-handler": "~2.8.0",
+    "react-native-gifted-chat": "^2.0.1",
     "react-native-gradle-plugin": "^0.71.16",
     "react-native-image-crop-picker": "^0.39.0",
     "react-native-linear-gradient": "^2.6.2",
@@ -54,6 +55,8 @@
     "react-native-web": "~0.18.9",
     "react-navigation": "^4.4.4",
     "react-router-dom": "^6.10.0",
+    "socket.io-client": "^4.6.1",
+    "styled-components": "^5.3.9",
     "zustand": "^4.3.7"
   },
   "devDependencies": {
@@ -62,6 +65,7 @@
     "@types/react-native": "~0.70.6",
     "@types/react-native-vector-icons": "^6.4.13",
     "@types/react-navigation": "^3.4.0",
+    "@types/styled-components": "^5.1.26",
     "typescript": "^4.6.3"
   },
   "private": true

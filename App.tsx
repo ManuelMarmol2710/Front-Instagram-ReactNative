@@ -30,6 +30,7 @@ import StoriesPage from "./src/pages/Stories";
 import CameraStories from "./src/pages/CamaraStories";
 import ReadStories from "./src/pages/ReadStories";
 import AwayReadStories from "./src/pages/AwayReadStories";
+import MenuDM from "./src/pages/MenuDM";
 import 'react-native-gesture-handler'
 import { BottomTab } from "./src/navigation/BottomTab";
 import { NavigationContainer } from "@react-navigation/native";
@@ -416,6 +417,16 @@ export default function App() {
            <Stack.Screen
           name="DM"
           component={DMPage}
+          options={{
+            title: "",
+            headerStyle: {
+              backgroundColor: "#000000",
+            },
+          }}
+        />
+          <Stack.Screen
+          name="MenuDM"
+          component={MenuDM}
           options={{
             title: "",
             headerStyle: {
