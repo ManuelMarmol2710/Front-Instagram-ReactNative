@@ -144,6 +144,7 @@ function HomePage({ navigation }: { navigation: any }) {
               overflow: "hidden",
             }}
           >
+            <TouchableOpacity> 
             <Text
               style={{
                 paddingTop: 20,
@@ -160,6 +161,8 @@ function HomePage({ navigation }: { navigation: any }) {
             >
               Story {"                             "}
             </Text>
+            </TouchableOpacity>
+           <TouchableOpacity>
             <Text
               style={{
                 paddingTop: 20,
@@ -176,6 +179,8 @@ function HomePage({ navigation }: { navigation: any }) {
             >
               Home {"                             "}
             </Text>
+            </TouchableOpacity>
+           <TouchableOpacity>
             <Text
               style={{
                 paddingTop: 20,
@@ -187,11 +192,12 @@ function HomePage({ navigation }: { navigation: any }) {
               }}
               onPress={() => {
                 OnRefresh();
-                navigation.navigate("DM", {});
+                navigation.navigate("MenuDM", {});
               }}
             >
               DM
             </Text>
+            </TouchableOpacity>
           </Text>
           <View style={{ paddingTop: 0 }}>
             <FlatList

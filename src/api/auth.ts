@@ -3,7 +3,7 @@ import axis from 'axios'
 import { Alert } from "react-native";
 
 export const loginRequest = async (username: string, password: string) => {
-  return axis.post("https://back-twitter-reactnative-production.up.railway.app/login", {
+  return axis.post("https://back-instagram-reactnative-production.up.railway.app/login", {
     username,
     password,
   });
@@ -50,7 +50,7 @@ export const RegisterRequest = async (
       { text: "OK", onPress: () => console.log("OK Pressed") },
     ]);
     navigation.navigate("login")
-    return axis.post("https://back-twitter-reactnative-production.up.railway.app/register", {
+    return axis.post("https://back-instagram-reactnative-production.up.railway.app/register", {
       email,
       username,
       biography,

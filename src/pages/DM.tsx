@@ -8,55 +8,112 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  StyleSheet
 } from "react-native";
 import { useAuthStore } from "../store/auth.store";
 import axios from "../libs/axios";
+import {Bubble, GiftedChat, Send} from 'react-native-gifted-chat';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import io from 'socket.io-client'
+const socket = io('https://back-instagram-reactnative-production.up.railway.app/')
+function DMPage({ navigation,route }: { navigation: any,route: any}) {
+ const {userName} = route.params;
+  const [messages, setMessages] = useState([]);
 
-function DMPage({ navigation }: { navigation: any }) {
   const username = useAuthStore((state) => state.profile.username.username);
-  let [task, setTask] = useState([]);
-  const [task1, setTask1] = useState([]);
-  const [refreshing, setRefreshing] = useState(false);
-  const postRelease = async () => {
-    await axios.get(`followers/${username}`).then((response) => {
-setTask(response.data )
-  
-});
-
-  };
-  const followingRealease = async () => {
-    await axios.get(`follow/${username}`).then((response) => {
-      setTask1(response.data);
-      console.log(response.data);
-    });
-  };
-
   useEffect(() => {
-    postRelease();
-    followingRealease();
+    const receiveMessage = (message:any) => {
+      setMessages((previousMessages) =>
+      GiftedChat.append(previousMessages, message));
+     }
+   socket.on('messages',receiveMessage)
+   return () => {
+   socket.off('messages',receiveMessage)
+}
+  }, [messages]);
+
+  const onSend = useCallback((messages = []) => {
+    socket.emit('messages', messages)
+    console.log(messages)
+    setMessages((previousMessages) =>
+    GiftedChat.append(previousMessages, messages),
+   
+      );
+
+   
   }, []);
 
-  const OnRefresh = useCallback(async () => {
-    setRefreshing(true);
-    await postRelease(), setRefreshing(false);
-    await followingRealease(), setRefreshing(false);
-  }, []);
+  const renderSend = (props) => {
+    
+    return (
+      <Send {...props}>
+        <View>
+          <MaterialCommunityIcons
+            name="send-circle"
+            style={{marginBottom: 5, marginRight: 5}}
+            size={32}
+            color="#2e64e5"
+          />
+        </View>
+      </Send>
+    );
+  };
 
+  const renderBubble = (props) => {
+    return (
+      <Bubble
+        {...props}
+        wrapperStyle={{
+          right: {
+            backgroundColor: '#2e64e5',
+          },
+        }}
+        textStyle={{
+          right: {
+            color: '#fff',
+          },
+        }}
+      />
+    );
+  };
 
+  const scrollToBottomComponent = () => {
+    return(
+      <FontAwesome name='angle-double-down' size={22} color='#333' />
+    );
+  }
 
   return (
-    <SafeAreaView>
-      <ScrollView
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={OnRefresh} />
-        }
->
-<Text>
-        DM
+   <>
+   <View>
+    <Text>
+    {userName}    
     </Text>
-      </ScrollView>
-    </SafeAreaView>
+  </View>
+   <GiftedChat
+    messages={messages}
+    
+      onSend={(messages) => onSend(messages)}
+      user={{
+        _id: username,
+      }}
+      renderBubble={renderBubble}
+      alwaysShowSend
+      renderSend={renderSend}
+      scrollToBottom
+      scrollToBottomComponent={scrollToBottomComponent}
+    />
+   </>
+    
+  
   );
-
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 export default DMPage;
