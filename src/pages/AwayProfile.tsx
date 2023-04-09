@@ -27,12 +27,12 @@ function AwayProfile({ navigation, route }: { navigation: any; route: any }) {
   const [isLike, setisLike] = useState(false);
   const [countFollowing, setCountFollowing] = useState([]);
   const [countFollowers, setCountFollowers] = useState([]);
-  const tweetsRelease = async () => {
+  const postRelease = async () => {
     await axios.get(`post/${username}`).then((response) => {
       setTask(response.data);
     });
   };
-  const tweetsCount = async () => {
+  const postCount = async () => {
     await axios.get(`countPost/${username}`).then((response) => {
       setCount(response.data);
     });
@@ -48,16 +48,16 @@ function AwayProfile({ navigation, route }: { navigation: any; route: any }) {
     });
   };
   useEffect(() => {
-    tweetsRelease();
-    tweetsCount();
+    postRelease();
+    postCount();
     siloSIgo();
     followingCount();
     followersCount();
   }, []);
   const OnRefresh = useCallback(async () => {
     setRefreshing(true);
-    await tweetsRelease(), setRefreshing(false);
-    await tweetsCount(), setRefreshing(false);
+    await postRelease(), setRefreshing(false);
+    await postCount(), setRefreshing(false);
     await followingCount(), setRefreshing(false);
     await followersCount(), setRefreshing(false);
   }, []);
@@ -132,7 +132,7 @@ function AwayProfile({ navigation, route }: { navigation: any; route: any }) {
               }}
             >
               <View style={{ flex: 1, alignItems: "center" }}>
-                <Text style={styles.statLabel}>Tweets</Text>
+                <Text style={styles.statLabel}>post</Text>
                 <Text style={styles.statValue}>{count}</Text>
               </View>
               <View style={{ flex: 1, alignItems: "center" }}>
@@ -215,7 +215,7 @@ function AwayProfile({ navigation, route }: { navigation: any; route: any }) {
                       onPress={() =>
                         navigation.navigate("showPost", {
                           owner: item["owner"],
-                          tweets: item["tweets"],
+                          post: item["post"],
                           time: item["time"],
                           _id: item["_id"],
                         })
@@ -263,7 +263,7 @@ function AwayProfile({ navigation, route }: { navigation: any; route: any }) {
                           }}
                         >
                           {" "}
-                          {item["tweets"]} {"\n"}
+                          {item["post"]} {"\n"}
                           {"\n"}
                           {"\n"}
                         </Text>

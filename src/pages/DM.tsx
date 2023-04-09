@@ -20,28 +20,43 @@ const socket = io(
   "https://back-instagram-reactnative-production.up.railway.app/"
 );
 function DMPage({ navigation, route }: { navigation: any; route: any }) {
-  const { userName } = route.params;
+   const {userName} = route.params;
+  const username = useAuthStore((state) => state.profile.username.username);
   const [messages, setMessages] = useState([]);
 
-  const username = useAuthStore((state) => state.profile.username.username);
+  const chatsHistorialmisMensajes = async () => {
+    await axios.get(`chat/${username}/${userName}`).then(async (response) => {
+  setMessages(response.data);
+ console.log(response.data)
+  
+});
+
+  }
+
   useEffect(() => {
-    const receiveMessage = (message: any) => {
+  
+    chatsHistorialmisMensajes();
+ 
+   const receiveMessage = (message:any) => {
       setMessages((previousMessages) =>
-        GiftedChat.append(previousMessages, message)
-      );
-    };
-    socket.on("messages", receiveMessage);
-    return () => {
-      socket.off("messages", receiveMessage);
-    };
-  }, [messages]);
+      GiftedChat.append(previousMessages, message));
+      
+    }
+   socket.on('messages',receiveMessage)
+   return () => {
+   socket.off('messages',receiveMessage)
+   
+}
+
+  }, []);
 
   const onSend = useCallback((messages = []) => {
-    socket.emit("messages", messages);
-    console.log(messages);
+    socket.emit('messages', messages)
     setMessages((previousMessages) =>
-      GiftedChat.append(previousMessages, messages)
-    );
+    GiftedChat.append(previousMessages, messages),
+     );
+
+   
   }, []);
 
   const renderSend = (props) => {
@@ -85,10 +100,10 @@ function DMPage({ navigation, route }: { navigation: any; route: any }) {
     <>
       <View
         style={{
-          marginTop: "0.1%",
+          marginTop: 0.1,
           borderColor: "#fff",
-          borderRadius: "5%",
-          borderBottomWidth:"2.5%",
+          borderRadius: 5,
+          borderBottomWidth:2.5,
           backgroundColor: "#000000",
           height:"10%"
         }}
@@ -102,6 +117,7 @@ function DMPage({ navigation, route }: { navigation: any; route: any }) {
         onSend={(messages) => onSend(messages)}
         user={{
           _id: username,
+          name: userName
         }}
         renderBubble={renderBubble}
         alwaysShowSend
