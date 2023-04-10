@@ -25,42 +25,23 @@ LogBox.ignoreAllLogs();
 YellowBox.ignoreWarnings(["VirtualizedLists should never be nested"]);
 
 function BuscarPage({ navigation }: { navigation: any }) {
-  const [search, setSearch] = React.useState("");
-  const [selected, setSelected] = React.useState("");
+
   const [task, setTask] = useState([]);
   const [taskSelect, setTaskSelect] = useState([]);
   const [taskUser, setTaskUser] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
   const username = useAuthStore((state) => state.profile.username.username);
-
-  const userFind = async () => {
-    await axios.get(`/userSearch/${search}`).then((response) => {
-      setTaskUser(response.data);
-      console.log(response.data);
-    });
-  };
-
-  const postFind = async () => {
-    await axios.get(`/Postsearch/${search}`).then((response) => {
-      setTask(response.data);
-    });
-  };
-
-  const selectPostFind = async () => {
+ const selectPostFind = async () => {
     await axios.get(`PostFilterImage/http`).then((response) => {
       setTaskSelect(response.data);
     });
   };
- const data = [
-    { key: "1", value: "Usuario" },
-    { key: "2", value: "Post" },
-  
-  ];
+ 
 
   useEffect(() => {
     selectPostFind();
     
-  });
+  },[]);
 
   const OnRefresh = useCallback(async () => {
     setRefreshing(true);

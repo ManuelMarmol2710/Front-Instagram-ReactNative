@@ -152,7 +152,52 @@ function ReadStories({ route, navigation }: { route: any; navigation: any }) {
                       </Text>
 
                       <Text>
+                      <Text>
+     <TouchableOpacity
+            onPress={  () =>{  Alert.alert("Desea eliminar la Storie?", "Su Storie sera eliminado", [
+              {
+                text: "Cancel",
+                onPress: () => console.log("Cancelado"),
+                style: "cancel",
+              },
+              {
+                text: "OK",
+                onPress: async () =>
+                  await axios.delete(`deleteStorie/${item['_id']}`).then((response) => {
+                    navigation.navigate("Profile");
+                  }),
+              },
+            ]);
+          }}
 
+            style={{
+              backgroundColor: "#d30000",
+              padding: 10,
+              borderRadius: 10,
+              marginBottom: 15,
+              marginLeft: 90,
+              marginRight: -190,
+            }}
+          >
+            <Text
+              style={{
+                textAlign: "center",
+                fontWeight: "700",
+                fontSize: 16,
+                color: "#fff",
+                paddingTop:10,
+              }}
+            >
+              <Icon
+                style={{ padding: 12, textAlign: "right" }}
+                name="delete"
+                color="#fff"
+                size={25}
+              />
+            </Text>
+          </TouchableOpacity> 
+
+     </Text>
                       </Text>
                     </TouchableOpacity>
                   );
