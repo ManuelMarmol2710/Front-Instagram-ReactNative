@@ -278,15 +278,14 @@ function ProfilePage({ navigation }: { navigation: any }) {
                             @{item["owner"]} {"\n"}
                             {"\n"}
                           </Text>
-                          <View style={{ paddingLeft: 45, paddingTop: 35 }}>
+                          <View style={{ paddingLeft: "3.5%", paddingTop: "12%" }}>
                             <Image
                               style={{
-                                width: 300,
-                                height: 300,
-                                borderColor: "#000000",
-                                borderWidth: 3,
-                                borderRadius: 10,
-                                marginBottom: 20,
+                              width: 360,
+                              height: 360,
+                              borderColor: "#000000",
+                              borderWidth: 3,
+                              borderRadius: 5,
                               }}
                               source={{ uri: `${item["url"]}` }}
                             />
@@ -298,10 +297,11 @@ function ProfilePage({ navigation }: { navigation: any }) {
                               paddingRight: 60,
                               textAlign: "left",
                               fontSize: 14,
+                              fontWeight: "600",
                             }}
                           >
                             {" "}
-                            @{item["owner"]}: {item["post"]}
+                            {item["owner"]}: {item["post"]}
                             {"\n"}
                           </Text>
 

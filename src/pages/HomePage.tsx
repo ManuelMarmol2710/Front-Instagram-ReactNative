@@ -12,8 +12,10 @@ import {
 import { useAuthStore } from "../store/auth.store";
 import axios from "../libs/axios";
 import { LinearGradient } from "expo-linear-gradient";
-import Container from '../components/Container/Container';
-import Content from '../components/Content/Content';
+import Container from "../components/Container/Container";
+import Content from "../components/Content/Content";
+import Icon from "@expo/vector-icons/MaterialCommunityIcons";
+import { AntDesign } from "@expo/vector-icons";
 function HomePage({ navigation }: { navigation: any }) {
   const username = useAuthStore((state) => state.profile.username.username);
   let [task, setTask] = useState([]);
@@ -49,8 +51,66 @@ function HomePage({ navigation }: { navigation: any }) {
             <RefreshControl refreshing={refreshing} onRefresh={OnRefresh} />
           }
         >
+          <View style={{ paddingHorizontal: "1.5%", paddingTop: "15%" }}>
+            <Text
+              style={{
+                fontSize: 16,
+                fontWeight: "500",
+                color: "#333",
+                paddingTop: 14,
+                paddingLeft: 13,
+                paddingRight: 10,
+                paddingBottom: 1,
+                paddingHorizontal: 10,
+                borderColor: "black",
+                borderWidth: 3,
+                borderRadius: 15,
+                backgroundColor: "#fff",
+                overflow: "hidden",
+              }}
+            >
+              <TouchableOpacity>
+                <Text
+                  style={{
+                    paddingTop: 20,
+                    paddingLeft: "16%",
+                    textAlign: "left",
+                    fontWeight: "700",
+                    fontSize: 16,
+                    color: "#000000",
+                  }}
+                  onPress={() => {
+                    OnRefresh();
+                    navigation.navigate("Home", {});
+                  }}
+                >
+                  <AntDesign name="home" size={24} color="black" />
+                  {"   "}Home
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity>
+                <Text
+                  style={{
+                    paddingTop: 20,
+                    textAlign: "right",
+                    paddingLeft: "47%",
+                    fontWeight: "700",
+                    fontSize: 16,
+                    color: "#000000",
+                  }}
+                  onPress={() => {
+                    OnRefresh();
+                    navigation.navigate("MenuDM", {});
+                  }}
+                >
+                  DM <AntDesign name="message1" size={24} color="black"/>
+                </Text>
+              </TouchableOpacity>
+            </Text>
+          </View>
           <ScrollView horizontal={true}>
-            <View style={{ paddingHorizontal: 25, paddingTop: 45 }}>
+            <View style={{ paddingHorizontal: 25, paddingTop: "0.2%" }}>
               <FlatList
                 data={task1}
                 numColumns={40}
@@ -82,38 +142,39 @@ function HomePage({ navigation }: { navigation: any }) {
                         ]}
                         start={{ x: 0.0, y: 1.0 }}
                         end={{ x: 1.0, y: 1.0 }}
-                        style={{ borderRadius: 12 }}
+                        style={{ borderRadius: 25 }}
                       >
                         <Text
                           style={{
-                            textAlign: "left",
+                            textAlign: "center",
                             fontSize: 16,
-                            fontWeight: "500",
-
+                            fontWeight: "700",
                             paddingTop: 25,
                             paddingBottom: 5,
                             paddingHorizontal: 15,
                             borderWidth: 3,
                             margin: 1,
                             width: 200,
-                            borderRadius: 10,
+                            height: 75,
+                            borderRadius: 30,
                             paddingVertical: 10,
                             alignItems: "center",
                             justifyContent: "center",
                             backgroundColor: "white",
+                            overflow: "hidden"
                           }}
                         >
                           <Text
                             style={{
                               paddingTop: 20,
                               paddingLeft: 30,
-                              textAlign: "left",
+                              textAlign: "center",
                               fontWeight: "700",
                               fontSize: 16,
                               color: "#000000",
                             }}
                           >
-                            @{item["following"]}
+                            {item["following"]}
                           </Text>
                         </Text>
                       </LinearGradient>
@@ -123,82 +184,6 @@ function HomePage({ navigation }: { navigation: any }) {
               />
             </View>
           </ScrollView>
-
-          <View style={{ paddingHorizontal: 25, paddingTop: 30 }}></View>
-          <Text
-            style={{
-              textAlign: "justify",
-
-              fontSize: 16,
-              fontWeight: "500",
-              color: "#333",
-              paddingTop: 14,
-              paddingLeft: 13,
-              paddingRight: 10,
-              paddingBottom: 6,
-              paddingHorizontal: 10,
-              borderColor: "black",
-              borderWidth: 3,
-              borderRadius: 15,
-              backgroundColor: "#fff",
-              overflow: "hidden",
-            }}
-          >
-            <TouchableOpacity> 
-            <Text
-              style={{
-                paddingTop: 20,
-                paddingLeft: 30,
-
-                fontWeight: "700",
-                fontSize: 16,
-                color: "#000000",
-              }}
-              onPress={() => {
-                OnRefresh();
-                navigation.navigate("stories", {});
-              }}
-            >
-              Story {"                             "}
-            </Text>
-            </TouchableOpacity>
-           <TouchableOpacity>
-            <Text
-              style={{
-                paddingTop: 20,
-                paddingLeft: 30,
-                textAlign: "center",
-                fontWeight: "700",
-                fontSize: 16,
-                color: "#000000",
-              }}
-              onPress={() => {
-                OnRefresh();
-                navigation.navigate("Home", {});
-              }}
-            >
-              Home {"                             "}
-            </Text>
-            </TouchableOpacity>
-           <TouchableOpacity>
-            <Text
-              style={{
-                paddingTop: 20,
-                paddingLeft: 30,
-                textAlign: "center",
-                fontWeight: "700",
-                fontSize: 16,
-                color: "#000000",
-              }}
-              onPress={() => {
-                OnRefresh();
-                navigation.navigate("MenuDM", {});
-              }}
-            >
-              DM
-            </Text>
-            </TouchableOpacity>
-          </Text>
           <View style={{ paddingTop: 0 }}>
             <FlatList
               data={task}
@@ -207,7 +192,7 @@ function HomePage({ navigation }: { navigation: any }) {
                   return (
                     <TouchableOpacity
                       style={{
-                        backgroundColor: "#afc7d8",
+                        backgroundColor: "#000000",
                         paddingTop: 10,
                         paddingLeft: 10,
                         paddingRight: 10,
@@ -287,7 +272,7 @@ function HomePage({ navigation }: { navigation: any }) {
                   return (
                     <TouchableOpacity
                       style={{
-                        backgroundColor: "#afc7d8",
+                        backgroundColor: "#000000",
                         paddingTop: 10,
                         paddingLeft: 10,
                         paddingRight: 10,
@@ -334,37 +319,37 @@ function HomePage({ navigation }: { navigation: any }) {
                           {"\n"}
                         </Text>
 
-                        <View style={{ paddingLeft: 140, paddingTop: 5 }}>
+                        <View
+                          style={{ paddingLeft: "3.5%", paddingTop: "12%" }}
+                        >
                           <Image
                             style={{
-                              width: 100,
-                              height: 100,
+                              width: 370,
+                              height: 370,
                               borderColor: "#000000",
                               borderWidth: 3,
-                              borderRadius: 10,
+                              borderRadius: 5,
                             }}
                             source={{ uri: `${item["url"]}` }}
                           />
                         </View>
-                        <View style={{ paddingLeft: 140, paddingTop: 5 }}>
+                        <View style={{ paddingLeft: "0.5%", paddingTop: "5%" }}>
                           <Text
                             style={{
                               paddingTop: 20,
-                              paddingLeft: 60,
+                              paddingLeft: 20,
                               paddingRight: 60,
                               textAlign: "left",
                               fontSize: 14,
+                              fontWeight: "500",
                             }}
                           >
-                            {" "}
-                            {item["post"]} {"\n"}
-                            {"\n"}
-                            {"\n"}
+                            {item["owner"]}: {item["post"]}
                           </Text>
                         </View>
                         <Text
                           style={{
-                            paddingTop: 50,
+                            paddingTop: 10,
                             paddingLeft: 60,
                             paddingRight: 60,
                             textAlign: "right",

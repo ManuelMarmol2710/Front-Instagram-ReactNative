@@ -111,9 +111,6 @@ function StoriesPage({ navigation }: { navigation: any }) {
                 marginTop: 10,
                 marginLeft: 0,
                 marginRight: 0,
-                borderColor: "#000000",
-                borderWidth: 3,
-                borderRadius: 10,
               }}
             >
               {image && (
@@ -128,7 +125,7 @@ function StoriesPage({ navigation }: { navigation: any }) {
               <TouchableOpacity
                 onPress={Upload}
                 style={{
-                  backgroundColor: "#3364FF",
+                  backgroundColor: "#000000",
                   padding: 10,
                   borderRadius: 10,
                   marginBottom: 30,
@@ -159,7 +156,7 @@ function StoriesPage({ navigation }: { navigation: any }) {
               <TouchableOpacity
                 onPress={() => navigation.navigate("CameraStories")}
                 style={{
-                  backgroundColor: "#3364FF",
+                  backgroundColor: "#000000",
                   padding: 10,
                   borderRadius: 10,
                   marginBottom: 30,
