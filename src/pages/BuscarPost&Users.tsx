@@ -72,7 +72,6 @@ function BuscarPostAndUser({ navigation }: { navigation: any }) {
   useEffect(() => {
     userFind();
     tweetsFind();
-
   }, [search]);
 
   const OnRefresh = useCallback(async () => {
@@ -103,8 +102,6 @@ function BuscarPostAndUser({ navigation }: { navigation: any }) {
           editable
         />
 
-
-        
         <View style={{ margin: 20, paddingTop: 5 }}>
           <View>
             <FlatList
@@ -115,7 +112,7 @@ function BuscarPostAndUser({ navigation }: { navigation: any }) {
                     <TouchableOpacity
                       onPress={() => navigation.navigate("Profile", {})}
                       style={{
-                        backgroundColor: "#afc7d8",
+                        backgroundColor: "#000000",
                         paddingTop: 10,
                         paddingLeft: 10,
                         paddingRight: 160,
@@ -158,7 +155,7 @@ function BuscarPostAndUser({ navigation }: { navigation: any }) {
                   return (
                     <TouchableOpacity
                       style={{
-                        backgroundColor: "#afc7d8",
+                        backgroundColor: "#000000",
                         paddingTop: 10,
                         paddingLeft: 10,
                         paddingRight: 160,
@@ -219,7 +216,7 @@ function BuscarPostAndUser({ navigation }: { navigation: any }) {
                 return (
                   <TouchableOpacity
                     style={{
-                      backgroundColor: "#afc7d8",
+                      backgroundColor: "#000000",
                       paddingTop: 10,
                       paddingLeft: 5,
                       paddingRight: 5,
@@ -306,7 +303,7 @@ function BuscarPostAndUser({ navigation }: { navigation: any }) {
                 return (
                   <TouchableOpacity
                     style={{
-                      backgroundColor: "#afc7d8",
+                      backgroundColor: "#000000",
                       paddingTop: 10,
                       paddingLeft: 5,
                       paddingRight: 5,
@@ -386,7 +383,7 @@ function BuscarPostAndUser({ navigation }: { navigation: any }) {
                 return (
                   <TouchableOpacity
                     style={{
-                      backgroundColor: "#afc7d8",
+                      backgroundColor: "#000000",
                       paddingTop: 10,
                       paddingLeft: 5,
                       paddingRight: 5,
@@ -440,33 +437,32 @@ function BuscarPostAndUser({ navigation }: { navigation: any }) {
                         {"\n"}
                       </Text>
 
-                      <Text
-                        style={{
-                          paddingTop: 20,
-                          paddingLeft: 60,
-                          paddingRight: 60,
-                          textAlign: "left",
-                          fontSize: 14,
-                        }}
-                      >
-                        {" "}
-                        {item["post"]} {"\n"}
-                        {"\n"}
-                        {"\n"}
-                      </Text>
-
-                      <View style={{ paddingLeft: 140, paddingTop: 5 }}>
+                      <View style={{ paddingLeft: "3.5%", paddingTop: "12%" }}>
                         <Image
                           style={{
-                            width: 100,
-                            height: 100,
+                            width: 340,
+                            height: 340,
                             borderColor: "#000000",
                             borderWidth: 3,
-                            borderRadius: 10,
+                            borderRadius: 5,
                           }}
                           source={{ uri: `${item["url"]}` }}
                         />
                       </View>
+
+                      <Text
+                        style={{
+                          paddingTop: 10,
+                          paddingLeft: 60,
+                          paddingRight: 60,
+                          textAlign: "left",
+                          fontSize: 14,
+                          fontWeight: "600",
+                        }}
+                      >
+                        {item["owner"]}: {item["post"]}
+                        {"\n"}
+                      </Text>
 
                       <Text
                         style={{
@@ -487,7 +483,7 @@ function BuscarPostAndUser({ navigation }: { navigation: any }) {
                 return (
                   <TouchableOpacity
                     style={{
-                      backgroundColor: "#afc7d8",
+                      backgroundColor: "#000000",
                       paddingTop: 10,
                       paddingLeft: 5,
                       paddingRight: 5,
@@ -495,7 +491,7 @@ function BuscarPostAndUser({ navigation }: { navigation: any }) {
                     onPress={() =>
                       navigation.navigate("PostWithImage", {
                         owner: item["owner"],
-                      post: item["post"],
+                        post: item["post"],
                         time: item["time"],
                         _id: item["_id"],
                         url: item["url"],
@@ -534,33 +530,33 @@ function BuscarPostAndUser({ navigation }: { navigation: any }) {
                         {"\n"}
                       </Text>
 
-                      <Text
-                        style={{
-                          paddingTop: 20,
-                          paddingLeft: 60,
-                          paddingRight: 60,
-                          textAlign: "left",
-                          fontSize: 14,
-                        }}
-                      >
-                        {" "}
-                        {item["post"]} {"\n"}
-                        {"\n"}
-                        {"\n"}
-                      </Text>
-
-                      <View style={{ paddingLeft: 140, paddingTop: 5 }}>
+                      <View style={{  paddingLeft: "3.5%", paddingTop: "12%"  }}>
                         <Image
                           style={{
-                            width: 100,
-                            height: 100,
+                            width: 340,
+                            height: 340,
                             borderColor: "#000000",
                             borderWidth: 3,
-                            borderRadius: 10,
+                            borderRadius: 5,
                           }}
                           source={{ uri: `${item["url"]}` }}
                         />
                       </View>
+
+                      <Text
+                        style={{
+                          paddingTop: 20,
+                          paddingLeft: 90,
+                          paddingRight: 60,
+                          textAlign: "left",
+                          fontSize: 14,
+                          fontWeight: "600",
+                        }}
+                      >
+                            {" "}
+                            {item["owner"]}: {item["post"]}
+                            {"\n"}
+                      </Text>
 
                       <Text
                         style={{
@@ -581,7 +577,6 @@ function BuscarPostAndUser({ navigation }: { navigation: any }) {
             }}
           />
         </View>
-    
       </ScrollView>
     </SafeAreaView>
   );

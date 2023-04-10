@@ -82,7 +82,7 @@ function BuscarPage({ navigation }: { navigation: any }) {
               {...props}
             />
           )}
-         style={{ margin: 10, paddingTop: 45 }}
+         style={{ margin: 10, paddingTop: 90 }}
           numberOfLines={2}
           maxLength={40}
           onFocus={()=> navigation.navigate('buscarPost&User')

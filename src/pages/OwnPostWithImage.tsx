@@ -151,7 +151,7 @@ function OwnPostWithImage({
             </View>
 
             <TouchableOpacity style={{ alignSelf: "center", marginRight: 10 }} onPress={alertaEliminar}>
-              <Feather name="more-vertical" size={20} color="#F5F5F5" />
+              <Feather name="delete" size={20} color="#F5F5F5" />
             </TouchableOpacity>
           </View>
 

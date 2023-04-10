@@ -816,13 +816,13 @@ function NewPostPage({ navigation }: { navigation: any }) {
                     <TouchableOpacity
                       onPress={Upload}
                       style={{
-                        backgroundColor: "#3364FF",
+                        backgroundColor: "#000000",
                         padding: 10,
                         borderRadius: 10,
                         marginBottom: 30,
                         marginLeft: -183,
                         marginRight: -120,
-                        marginTop: -15,
+                        marginTop: 15,
                       }}
                     >
                       <Text
