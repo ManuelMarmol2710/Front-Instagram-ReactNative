@@ -98,10 +98,10 @@ function HomePage({ navigation }: { navigation: any }) {
                 fontSize: 16,
                 fontWeight: "500",
                 color: "#333",
-                paddingTop: 14,
+                paddingTop: "0.5%",
                 paddingLeft: 13,
                 paddingRight: 10,
-                paddingBottom: 1,
+                paddingBottom: "4%",
                 paddingHorizontal: 10,
                 borderColor: "black",
                 borderWidth: 3,
@@ -135,7 +135,7 @@ function HomePage({ navigation }: { navigation: any }) {
                   style={{
                     paddingTop: 20,
                     textAlign: "right",
-                    paddingLeft: "47%",
+                    paddingLeft: "70%",
                     fontWeight: "700",
                     fontSize: 16,
                     color: "#000000",
@@ -145,7 +145,7 @@ function HomePage({ navigation }: { navigation: any }) {
                     navigation.navigate("MenuDM", {});
                   }}
                 >
-                  DM <AntDesign name="message1" size={24} color="black" />
+                  {"                                                     "}DM <AntDesign name="message1" size={24} color="black" />
                 </Text>
               </TouchableOpacity>
             </Text>
@@ -184,7 +184,7 @@ function HomePage({ navigation }: { navigation: any }) {
                         ]}
                         start={{ x: 0.0, y: 1.0 }}
                         end={{ x: 1.0, y: 1.0 }}
-                        style={{ borderRadius: 25 }}
+                        style={{ borderRadius: 35, paddingBottom: 4, paddingTop:4 }}
                       >
                         <Text
                           style={{
@@ -192,7 +192,7 @@ function HomePage({ navigation }: { navigation: any }) {
                             fontSize: 16,
                             fontWeight: "700",
                             paddingTop: 25,
-                            paddingBottom: 5,
+                            paddingBottom: 15,
                             paddingHorizontal: 15,
                             borderWidth: 3,
                             margin: 1,
@@ -241,8 +241,8 @@ function HomePage({ navigation }: { navigation: any }) {
                 return (
                   <SafeAreaView>
                       <ScrollView>
-                       <View style={{ marginBottom: 10, marginTop: 0 }}>
-                          <View style={{ height: 400 }}>
+                       <View style={{ marginBottom: 10, marginTop: 10 }}>
+                          <View style={{ height: 400, width:400 }}>
                             <View style={styles.top}>
                               <View style={styles.topleft}>
                                 <Image
@@ -265,7 +265,7 @@ function HomePage({ navigation }: { navigation: any }) {
 
                                <Image
                                   style={{
-                                    width: "75%",
+                                    width: "100%",
                                     height: 350,
                                     borderWidth: 90,
                                     borderRadius: 10,
