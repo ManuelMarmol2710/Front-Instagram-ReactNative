@@ -31,6 +31,7 @@ import CameraStories from "./src/pages/CamaraStories";
 import ReadStories from "./src/pages/ReadStories";
 import AwayReadStories from "./src/pages/AwayReadStories";
 import MenuDM from "./src/pages/MenuDM";
+import DeletePage from "./src/pages/DeleteProfile";
 import 'react-native-gesture-handler'
 import { BottomTab } from "./src/navigation/BottomTab";
 import { NavigationContainer } from "@react-navigation/native";
@@ -437,6 +438,16 @@ export default function App() {
           <Stack.Screen
           name="CameraStories"
           component={CameraStories}
+          options={{
+            title: "",
+            headerStyle: {
+              backgroundColor: "#000000",
+            },
+          }}
+        />
+        <Stack.Screen
+          name="delete"
+          component={DeletePage}
           options={{
             title: "",
             headerStyle: {
