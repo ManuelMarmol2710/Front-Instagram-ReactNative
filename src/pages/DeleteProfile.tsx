@@ -52,8 +52,8 @@ function DeletePage({ navigation }: { navigation: any }) {
         <View
           style={{
             paddingHorizontal: 25,
-            paddingTop: 40,
-            backgroundColor: "#fff",
+            paddingTop: 300,
+            backgroundColor: "#000000",
             borderRadius: 50,
             borderWidth: 3,
             margin: 10,
@@ -66,7 +66,7 @@ function DeletePage({ navigation }: { navigation: any }) {
               
               }}
               style={{
-                backgroundColor: "#000000",
+                backgroundColor: "#d30000",
                 padding: 20,
                 borderRadius: 10,
                 marginBottom: 10,
@@ -83,7 +83,7 @@ function DeletePage({ navigation }: { navigation: any }) {
                 Eliminar Cuenta{"          "}
                 <Icon
                   style={{ textAlign: "center" }}
-                  name="account-arrow-right"
+                  name="account-cancel"
                   color="#fff"
                   size={30}
                 />

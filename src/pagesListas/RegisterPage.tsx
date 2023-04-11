@@ -70,6 +70,7 @@ function RegisterPage({ navigation }: { navigation: any }) {
               placeholder="Nombre"
               onChangeText={setText2}
               value={name}
+              textColor="white"
               placeholderTextColor="white"
               selectionColor="white"
               style={styles.textInput}
@@ -82,6 +83,7 @@ function RegisterPage({ navigation }: { navigation: any }) {
               placeholder="Apellido"
               onChangeText={setText3}
               value={last_Name}
+              textColor="white"
               placeholderTextColor="white"
               selectionColor="white"
               style={styles.textInput}
@@ -94,6 +96,7 @@ function RegisterPage({ navigation }: { navigation: any }) {
               placeholder="Biografia"
               onChangeText={(text) => setText4(text)}
               value={biography}
+              textColor="white"
               placeholderTextColor="white"
               selectionColor="white"
               style={styles.textInput}
@@ -106,6 +109,7 @@ function RegisterPage({ navigation }: { navigation: any }) {
               placeholder="ejemplo@test.com"
               onChangeText={(text) => handleCheckEmail(text)}
               value={email}
+              textColor="white"
               placeholderTextColor="white"
               selectionColor="white"
               style={styles.textInput}
@@ -118,6 +122,7 @@ function RegisterPage({ navigation }: { navigation: any }) {
               placeholder="Usuario"
               onChangeText={setText5}
               value={username}
+              textColor="white"
               placeholderTextColor="white"
               selectionColor="white"
               style={styles.textInput}
@@ -131,6 +136,7 @@ function RegisterPage({ navigation }: { navigation: any }) {
               placeholderTextColor="white"
               onChangeText={(text) => setText1(text)}
               value={password}
+              textColor="white"
               style={styles.textInput}
               selectionColor="white"
               activeUnderlineColor="white"

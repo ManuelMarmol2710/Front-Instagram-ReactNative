@@ -235,7 +235,7 @@ function EditProfilePage({ navigation }: { navigation: any }) {
                 padding: 20,
                 borderRadius: 10,
                 marginBottom: 10,
-                marginTop: 10,
+                marginTop: 30,
               }}
             >
               <Text
@@ -249,7 +249,7 @@ function EditProfilePage({ navigation }: { navigation: any }) {
                 Eliminar Cuenta{"          "}
                 <Icon
                   style={{ textAlign: "center" }}
-                  name="account-arrow-right"
+                  name="account-cancel"
                   color="#fff"
                   size={30}
                 />

@@ -108,7 +108,8 @@ function PostWithImage({ route, navigation }: { route: any; navigation: any }) {
                 }}
                 style={styles.profilImage}
               />
-              <Text style={styles.title}>{owner}</Text>
+              <Text style={styles.title}
+              >{owner}</Text>
             </View>
           </View>
 
@@ -1559,7 +1560,8 @@ function PostWithImage({ route, navigation }: { route: any; navigation: any }) {
           </Text>
 
           <View style={{ flexDirection: "row", marginTop: 5, marginBottom: 5 }}>
-            <Text style={styles.postName}>{owner}</Text>
+            <Text style={styles.postName}
+            >{owner}</Text>
             <Text style={{ color: "white", marginTop: 2 }}> {post}</Text>
           </View>
 
