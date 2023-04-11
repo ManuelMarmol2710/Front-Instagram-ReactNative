@@ -225,6 +225,36 @@ function EditProfilePage({ navigation }: { navigation: any }) {
                 />
               </Text>
             </TouchableOpacity>
+            
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("delete");
+              }}
+              style={{
+                backgroundColor: "#FF0000",
+                padding: 20,
+                borderRadius: 10,
+                marginBottom: 10,
+                marginTop: 10,
+              }}
+            >
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontWeight: "700",
+                  fontSize: 16,
+                  color: "#fff",
+                }}
+              >
+                Eliminar Cuenta{"          "}
+                <Icon
+                  style={{ textAlign: "center" }}
+                  name="account-arrow-right"
+                  color="#fff"
+                  size={30}
+                />
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Content>

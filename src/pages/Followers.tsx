@@ -71,6 +71,7 @@ function followersPage({ navigation }: { navigation: any }) {
           <FlatList
             data={task}
             renderItem={({ item }) => {
+              if(item['disable']=== false){ 
               return (
                 <TouchableOpacity
                   style={{
@@ -123,7 +124,7 @@ function followersPage({ navigation }: { navigation: any }) {
                   </Text>
                 </TouchableOpacity>
               );
-            }}
+            }}}
           />
         </View>
       </ScrollView>

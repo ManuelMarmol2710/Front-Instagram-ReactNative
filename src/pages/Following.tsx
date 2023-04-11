@@ -67,7 +67,10 @@ function followingPage({ navigation }: { navigation: any }) {
           <FlatList
             data={task}
             renderItem={({ item }) => {
+              if(item['disable']=== false){
+                  
               return (
+               
                 <TouchableOpacity
                   style={{
                     backgroundColor: "#000000",
@@ -120,6 +123,7 @@ function followingPage({ navigation }: { navigation: any }) {
                   </Text>
                 </TouchableOpacity>
               );
+              }
             }}
           />
         </View>
