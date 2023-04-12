@@ -147,7 +147,7 @@ function Comments({ route, navigation }: { route: any; navigation: any }) {
                       }
                     >
                       <View style={styles.top}>
-                        <View style={styles.topleft}>
+                        <View style={styles.topleft2}>
                           <Image
                             source={{
                               uri: "data:image/jpeg;base64,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",
@@ -162,14 +162,14 @@ function Comments({ route, navigation }: { route: any; navigation: any }) {
                             style={{ padding: 12, textAlign: "left" }}
                             name="reply"
                             color="#fff"
-                            size={25}
+                            size={20}
                           />
                           @{item["owner"]}:{" "}
                           <Icon
                             style={{ padding: 10, textAlign: "left" }}
                             name="brush"
                             color="#fff"
-                            size={25}
+                            size={16}
                           />{" "}
                           {"\n"}
                           {"\n"}
@@ -189,6 +189,7 @@ function Comments({ route, navigation }: { route: any; navigation: any }) {
                           {item["comment"]} {"\n"}
                           {"\n"}
                           {"\n"}
+                          {"\n"}
                         </Text>
 
                         <Text
@@ -196,8 +197,8 @@ function Comments({ route, navigation }: { route: any; navigation: any }) {
                             paddingTop: 50,
                             paddingLeft: 60,
                             paddingRight: 60,
-                            textAlign: "right",
-                            fontSize: 14,
+                            textAlign: "center",
+                            fontSize: 12,
                           }}
                         >
                           {" "}
@@ -209,13 +210,7 @@ function Comments({ route, navigation }: { route: any; navigation: any }) {
                 } else {
                   return (
                     <TouchableOpacity
-                      style={{
-                        backgroundColor: "#000000",
-                        paddingTop: 10,
-                        paddingLeft: 10,
-                        paddingRight: 10,
-                        paddingBottom: 10,
-                      }}
+                      style={styles.topleft}
                       onPress={() =>
                         navigation.navigate("awaycomment", {
                           comment: item["comment"],
@@ -225,41 +220,26 @@ function Comments({ route, navigation }: { route: any; navigation: any }) {
                         })
                       }
                     >
-                      <Text
-                        style={{
-                          textAlign: "left",
-                          fontSize: 16,
-                          fontWeight: "500",
-                          color: "#333",
-                          paddingTop: 25,
-                          paddingLeft: 10,
-                          paddingRight: 10,
-                          paddingBottom: 5,
-                          paddingHorizontal: 10,
-                          borderColor: "black",
-                          borderWidth: 3,
-                          borderRadius: 15,
-                          backgroundColor: "#fff",
-                          overflow: "hidden",
-                        }}
-                      >
-                        <Text
-                          style={{
-                            paddingTop: 20,
-                            paddingLeft: 30,
-                            textAlign: "left",
-                            fontWeight: "700",
-                            fontSize: 16,
-                            color: "#000000",
-                          }}
-                        >
+                      <View style={styles.top}>
+                        <View style={styles.topleft2}>
+                          <Image
+                            source={{
+                              uri: "data:image/jpeg;base64,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",
+                            }}
+                            style={styles.profilImage}
+                          />
+                        </View>
+                      </View>
+                      <Text style={styles.topleft}>
+                        <Text style={styles.top}>
                           <Icon
                             style={{ padding: 12, textAlign: "left" }}
                             name="reply"
-                            color="#000000"
-                            size={25}
+                            color="#fff"
+                            size={20}
                           />
-                          @{item["owner"]}: {"\n"}
+                          @{item["owner"]}:{" "}{" "}
+                          {"\n"}
                           {"\n"}
                         </Text>
 
@@ -270,10 +250,12 @@ function Comments({ route, navigation }: { route: any; navigation: any }) {
                             paddingRight: 60,
                             textAlign: "left",
                             fontSize: 14,
+                            color: "#fff"
                           }}
                         >
                           {" "}
                           {item["comment"]} {"\n"}
+                          {"\n"}
                           {"\n"}
                           {"\n"}
                         </Text>
@@ -283,27 +265,14 @@ function Comments({ route, navigation }: { route: any; navigation: any }) {
                             paddingTop: 50,
                             paddingLeft: 60,
                             paddingRight: 60,
-                            textAlign: "right",
-                            fontSize: 14,
+                            textAlign: "center",
+                            fontSize: 12,
                           }}
                         >
                           {" "}
                           || Subido el: {item["time"]}
                         </Text>
                       </Text>
-                      <TouchableOpacity
-                        style={{ alignSelf: "center", marginRight: 10 }}
-                        onPress={alertaEliminar}
-                      >
-                        <Feather
-                          name="more-vertical"
-                          size={20}
-                          color="#F5F5F5"
-                        />
-                      </TouchableOpacity>
-                      <View style={styles.ıconContainer}>
-                        <View style={styles.leftIcon}></View>
-                      </View>
                     </TouchableOpacity>
                   );
                 }
@@ -347,7 +316,9 @@ function Comments({ route, navigation }: { route: any; navigation: any }) {
                     borderRadius: 10,
                     marginBottom: 30,
                     marginLeft: -30,
-                    marginRight: -70,
+                    marginRight: -130,
+                    borderWidth:1,
+                    borderColor: "#fff"
                   }}
                 >
                   <Text

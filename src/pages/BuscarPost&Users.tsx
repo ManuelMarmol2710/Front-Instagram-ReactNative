@@ -96,7 +96,7 @@ function BuscarPostAndUser({ navigation }: { navigation: any }) {
           )}
           onChangeText={(text) => setSearch(text)}
           value={search}
-          style={{ margin: 10, paddingTop: 45 }}
+          style={{ margin: 10, paddingTop: 12 }}
           numberOfLines={2}
           maxLength={40}
           editable

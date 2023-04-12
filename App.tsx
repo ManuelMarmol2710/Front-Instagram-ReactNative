@@ -44,6 +44,7 @@ import {
 } from "react-native-safe-area-context";
 import { LogBox, Button } from "react-native";
 import {HeaderBackButton} from '@react-navigation/elements';
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -429,9 +430,14 @@ export default function App() {
           name="MenuDM"
           component={MenuDM}
           options={{
-            title: "",
+            title: "DM",
+            headerTitleStyle:{
+              fontWeight: "700",
+              color:"#fff"
+            },
             headerStyle: {
               backgroundColor: "#000000",
+              height:100
             },
           }}
         />

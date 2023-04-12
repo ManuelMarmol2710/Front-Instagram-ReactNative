@@ -29,7 +29,15 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     margin: 10,
-    color:"#fff"
+    color:"#fff",
+    borderBottomWidth: 2,
+    borderBottomColor: "#fff"
+  },
+  topleft2: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    margin: 10,
+    color:"#fff",
   },
   profilImage: {
     width: 30,

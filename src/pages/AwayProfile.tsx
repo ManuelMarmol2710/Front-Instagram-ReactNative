@@ -145,7 +145,7 @@ function AwayProfile({ navigation, route }: { navigation: any; route: any }) {
               }}
             >
               <View style={{ flex: 1, alignItems: "center" }}>
-                <Text style={styles2.statLabel}>post</Text>
+                <Text style={styles2.statLabel}>Post</Text>
                 <Text style={styles2.statValue}>{count}</Text>
               </View>
               <View style={{ flex: 1, alignItems: "center" }}>

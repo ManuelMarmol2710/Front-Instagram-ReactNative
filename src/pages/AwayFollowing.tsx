@@ -62,7 +62,7 @@ function AwayfollowingPage({
               textAlign: "left",
               fontSize: 30,
               fontWeight: "500",
-              color: "#000000",
+              color: "#fff",
               paddingBottom: 25,
               paddingLeft: 10,
               paddingTop: 5,
@@ -78,7 +78,7 @@ function AwayfollowingPage({
               return (
                 <TouchableOpacity
                   style={{
-                    backgroundColor: "#afc7d8",
+                    backgroundColor: "#000000",
                     paddingTop: 10,
                     paddingLeft: 10,
                     paddingRight: 10,
