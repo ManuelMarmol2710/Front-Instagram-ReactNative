@@ -73,7 +73,7 @@ function AwayComments({ route, navigation }: { route: any; navigation: any }) {
         >
           <View
             style={{
-              backgroundColor: "#afc7d8",
+              backgroundColor: "#000000",
               paddingTop: 10,
               paddingLeft: 10,
               paddingRight: 10,

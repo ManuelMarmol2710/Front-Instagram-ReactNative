@@ -104,7 +104,7 @@ function SettingsPage({ navigation }: { navigation: any }) {
           style={{
             paddingHorizontal: 40,
             paddingVertical: 5,
-            paddingTop: 120,
+            paddingTop: 340,
             paddingBottom: 0,
           }}
         >

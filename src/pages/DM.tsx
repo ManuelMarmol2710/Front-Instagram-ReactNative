@@ -103,12 +103,13 @@ function DMPage({ navigation, route }: { navigation: any; route: any }) {
           marginTop: 0.1,
           borderColor: "#fff",
           borderRadius: 5,
-          borderBottomWidth:2.5,
+          borderTopWidth:0.5, 
+          borderBottomWidth:3.5,
           backgroundColor: "#000000",
           height:"10%"
         }}
       >
-        <Text style={{ color: "#fff", fontSize: 20, textAlign: "left", marginTop:"5%", marginLeft:"5%" }}>
+        <Text style={{ color: "#fff", fontSize: 20, textAlign: "left", marginTop:"5%", marginLeft:"5%", fontWeight:"800" }}>
           @{userName}
         </Text>
       </View>

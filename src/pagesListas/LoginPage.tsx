@@ -80,6 +80,7 @@ function LoginPage({ navigation }: { navigation: any }) {
               placeholder="Username"
               onChangeText={setName}
               value={name}
+              textColor="white"
               placeholderTextColor="white"
               selectionColor="white"
               style={styles.textInput}
@@ -93,6 +94,7 @@ function LoginPage({ navigation }: { navigation: any }) {
               placeholderTextColor="white"
               onChangeText={setPassword}
               value={password}
+              textColor="white"
               style={styles.textInput}
               selectionColor="white"
               secureTextEntry={passwordVisible}
