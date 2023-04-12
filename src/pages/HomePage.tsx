@@ -8,6 +8,7 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  Alert
 } from "react-native";
 import { useAuthStore } from "../store/auth.store";
 import axios from "../libs/axios";
@@ -39,6 +40,7 @@ function HomePage({ navigation }: { navigation: any }) {
   const followingRealease = async () => {
     await axios.get(`follow/${username}`).then((response) => {
       setTask1(response.data);
+ 
     });
   };
   const onClick = async () => {
@@ -72,10 +74,28 @@ function HomePage({ navigation }: { navigation: any }) {
     });
   };
   useEffect(() => {
-    postRelease();
-    followingRealease();
-    obtenerLike();
-    getCountLike();
+    const foo = async () => {
+     await axios.get(`followers/${username}`).then((response) => {
+    //  setTask(response.data);
+      console.log(response.data)
+       if (response.data === "no") {
+        Alert.alert(
+          `No has subido historias`,
+          "Sera dirigido hacia el perfil Porfavor suba una historia",
+          [{ text: "OK", onPress: () => navigation.navigate("Profile") }]
+        );
+        } else {
+         
+          postRelease();
+          followingRealease();
+          obtenerLike();
+          getCountLike();
+        }
+      });
+    };
+    foo();
+   
+   
   }, []);
 
   const OnRefresh = useCallback(async () => {

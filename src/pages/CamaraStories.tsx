@@ -20,7 +20,7 @@ import { useAuthStore } from "../store/auth.store";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-export default function CameraStories() {
+export default function CameraStories({ navigation, route }: { navigation: any; route: any }) {
   let cameraRef = useRef();
   const [hasCameraPermission, setHasCameraPermission] = useState();
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
@@ -68,6 +68,7 @@ export default function CameraStories() {
       MediaLibrary.saveToLibraryAsync(photo.uri).then(() => {
         setPhoto(undefined);
       });
+      navigation.navigate('Profile')
     };
     let storiesPress = async () => {
       const response = await fetch(photo.uri!);
@@ -79,9 +80,11 @@ export default function CameraStories() {
       const upload = await uploadBytes(storageref, blob);
       const url = await getDownloadURL(storageref);
 
+
       axios.post(`storie/${username}`, {
         url,
       });
+      navigation.navigate('Profile')
     };
 
     return (

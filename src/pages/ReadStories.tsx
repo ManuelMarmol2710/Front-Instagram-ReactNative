@@ -32,7 +32,17 @@ function ReadStories({ route, navigation }: { route: any; navigation: any }) {
   };
   useEffect(() => {
     const foo = async () => {
-      Stories();
+      await axios.get(`mystorie/${username}`).then((response) => {
+        if (response.data === "no") {
+          Alert.alert(
+            `No has subido historias`,
+            "Sera dirigido hacia el perfil Porfavor suba una historia",
+            [{ text: "OK", onPress: () => navigation.navigate("Profile") }]
+          );
+        } else {
+          Stories();
+        }
+      });
     };
     foo();
   }, []);
